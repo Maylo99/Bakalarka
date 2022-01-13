@@ -3,7 +3,8 @@
 <h1>Courses</h1>
 
 <div id="courses">
-  <% @courses.each do |course| %>
+
+  <%@courses.each do |course| %>
     <%= render course %>
     <p>
       <%= link_to "Show this course", course %>

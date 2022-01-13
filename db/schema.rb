@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_13_113340) do
+ActiveRecord::Schema.define(version: 2022_01_13_221139) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -40,6 +40,14 @@ ActiveRecord::Schema.define(version: 2022_01_13_113340) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "comentars", force: :cascade do |t|
+    t.text "text"
+    t.integer "video_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["video_id"], name: "index_comentars_on_video_id"
+  end
+
   create_table "courses", force: :cascade do |t|
     t.string "title"
     t.string "description"
@@ -61,8 +69,10 @@ ActiveRecord::Schema.define(version: 2022_01_13_113340) do
   create_table "videos", force: :cascade do |t|
     t.string "title"
     t.text "description"
+    t.integer "course_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["course_id"], name: "index_videos_on_course_id"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
