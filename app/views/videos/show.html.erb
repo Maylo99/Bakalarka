@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @video %>
+<div>
+  <%=video_tag(url_for(@video.file),controls: '') %>
+<!--  <video src="<%#= url_for(@video.file) %>" height="100" width="200" loop muted="muted" autoplay></video>-->
+</div>
+
+<div>
+  <%= link_to "Edit this video", edit_video_path(@video) %> |
+  <%= link_to "Back to videos", videos_path %>
+
+  <%= button_to "Destroy this video", @video, method: :delete %>
+</div>
