@@ -15,10 +15,13 @@
                     <%= button_to "Kurzy", courses_path, :method => "get", class:"btn btn-outline-secondary"%>
                 </li>
               <li class="nav-item">
-                <%= button_to "Môj profil", courses_path, :method => "get", class:"btn btn-outline-secondary "%>
+                <%= button_to "Môj profil", update_user_path, method: :get, class:"btn btn-outline-secondary "%>
               </li>
               <li class="nav-item">
-                <%= button_to "Odhlásiť", courses_path, :method => "get", class:"btn btn-outline-secondary btn-danger"%>
+                <%= button_to "Logout", logout_path , method: :delete, class:"btn btn-outline-secondary" %>
+              </li>
+              <li class="nav-item">
+                <%= button_to "Prihlásenie", sign_in_path , method: :get, class:"btn btn-outline-secondary" %>
               </li>
             </ul>
             <form class="d-flex">

@@ -1,0 +1,29 @@
+<h1>Môj profil</h1>
+<%= form_with model: @user, url: update_user_path  do |form| %>
+  <%if @user.errors.any? %>
+    <div class="alert alert-danger">
+      <%@user.errors.full_messages.each do |message|%>
+        <div><%= message %></div>
+      <%end%>
+    </div>
+  <%end%>
+  <div class="mb-3">
+    <%= form.label :name, "Meno",class:"form-label"%>
+    <%= form.text_field :name , class:"form-control"%>
+  </div>
+  <div class="mb-3">
+    <%= form.label :last_name, "Priezvisko",class:"form-label"%>
+    <%= form.text_field :last_name , class:"form-control"%>
+  </div>
+  <div class="mb-3">
+    <%= form.label :age, "Vek",class:"form-label"%>
+    <%= form.number_field :age , class:"form-control"%>
+  </div>
+  <div class="mb-3">
+    <%= form.label :gender, "Pohlavie",class:"form-label"%>
+    <%= form.text_field :gender , class:"form-control"%>
+  </div>
+  <div class="mb-3">
+    <%= form.submit "Submit", class: "btn btn-primary"%>
+  </div>
+<%end%>
