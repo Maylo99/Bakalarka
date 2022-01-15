@@ -10,7 +10,6 @@ class RegistrationsController < ApplicationController
     else
       render :new, notice: "Not created account"
     end
-
   end
 
   private

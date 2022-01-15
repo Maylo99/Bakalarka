@@ -14,15 +14,21 @@
                 <li class="nav-item">
                     <%= button_to "Kurzy", courses_path, :method => "get", class:"btn btn-outline-secondary"%>
                 </li>
+              <%if !session[:user_id].nil?%>
               <li class="nav-item">
                 <%= button_to "Môj profil", update_user_path, method: :get, class:"btn btn-outline-secondary "%>
               </li>
+                <%end %>
+              <%if !session[:user_id].nil?%>
               <li class="nav-item">
                 <%= button_to "Logout", logout_path , method: :delete, class:"btn btn-outline-secondary" %>
               </li>
+                <%end %>
+              <%if session[:user_id].nil?%>
               <li class="nav-item">
                 <%= button_to "Prihlásenie", sign_in_path , method: :get, class:"btn btn-outline-secondary" %>
               </li>
+                <%end %>
             </ul>
             <form class="d-flex">
                 <input class="form-control me-1" type="search" placeholder="Search" aria-label="Search">

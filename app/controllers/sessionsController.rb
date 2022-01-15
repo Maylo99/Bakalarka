@@ -9,7 +9,7 @@ class SessionsController <ApplicationController
     if user.present? && user.authenticate(params[:password])
       redirect_to root_path, notice: "Logged"
     else
-      flash[:alert]="Invalid email or password"
+      flash[:alert]="Something is wwong"
       render :new
     end
   end

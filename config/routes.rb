@@ -6,11 +6,15 @@ Rails.application.routes.draw do
 
   get 'sign_in', to: 'sessions#new'
   post 'sign_in', to: 'sessions#create'
+  delete "logout", to:  "sessions#destroy"
 
   get 'update_user', to: 'user#create'
   patch 'update_user', to: 'user#update'
 
-  delete "logout", to:  "sessions#destroy"
+  get 'password/reset', to: 'password_resets#new'
+  post 'password/reset', to: 'password_resets#create'
+  get 'password/reset/edit', to: 'password_resets#edit'
+  patch 'password/reset/edit', to: 'password_resets#update'
 
   root to: 'main#index'
 end

@@ -9,7 +9,9 @@
     <div class="mb-3">
         <%= form.label :password, "password",class:"form-label" %>
         <%= form.password_field :password, class:"form-control" %>
-         <%#= link_to "Forgot password?", password_reset_path %>
+        <%= link_to "Zabudol si heslo?", password_reset_path %>
+        <br>
+        <%= link_to "Nový používateľ?", sign_up_path %>
     </div>
 
     <div class="mb-3">
