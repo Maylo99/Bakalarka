@@ -1,12 +1,17 @@
 <p style="color: green"><%= notice %></p>
 
 <%= render @course %>
-<%@course.videos.each do |video|%>
+
 <div>
-  <%=video.title%>
-  <%=video_tag(url_for(video.file),controls: '') %>
+
+  <%#=video_tag(url_for(video.file),controls: '') %>
 </div>
-<%end %>
+
+<ul class="list-group">
+  <%@course.videos.each do |video|%>
+    <li class="list-group-item"><%=link_to video.title, video_path(video)%></li>
+  <%end %>
+</ul>
 
 
 <div>

@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Comentars</h1>
+
+<div id="comentars">
+  <% @comentars.each do |comentar| %>
+    <%= render comentar %>
+    <p>
+      <%= link_to "Show this comentar", video_comentar_url(:id=>comentar.id, :video_id=>comentar.video_id) %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New comentar", new_video_comentar_path %>

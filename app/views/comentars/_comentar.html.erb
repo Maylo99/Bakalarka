@@ -1,0 +1,11 @@
+<div id="<%= dom_id comentar %>">
+
+  <p class="bg-info">
+    <strong>Date:</strong>
+    <%= comentar.created_at%>
+    <strong>Text:</strong>
+    <%= comentar.text %>
+    <%=link_to "edit", edit_video_comentar_url(:id=>comentar.id,:video_id=>comentar.video_id)%>
+    <%= button_to "Destroy this comentar", video_comentar_path(:id=>comentar.id,:video_id=>comentar.video_id), method: :delete %>
+  </p>
+</div>

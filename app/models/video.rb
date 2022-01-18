@@ -1,5 +1,5 @@
 class Video < ApplicationRecord
   has_one_attached :file
   belongs_to :course
-  has_many :comentar
+  has_many :comentars, dependent: :destroy
 end
