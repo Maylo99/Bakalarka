@@ -19,4 +19,8 @@ class UserController< ApplicationController
   def edit_params
     params.require(:user).permit(:gender, :age, :last_name, :name)
   end
+
+  def role?(role)
+    roles.any? { |r| r.name.underscore.to_sym == role }
+  end
 end
