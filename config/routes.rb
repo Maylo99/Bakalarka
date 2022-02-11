@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :videos do
-    resources :comentars
+    resources :comentars, only: [:create, :destroy, :edit]
+    put 'comentars/:id/edit', to: 'comentars#update'
   end
   resources :courses
   get 'sign_up', to: 'registrations#new'

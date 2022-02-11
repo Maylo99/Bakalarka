@@ -3,8 +3,16 @@
 <%= render @video %>
 <div>
   <%=video_tag(url_for(@video.file),controls: '') %>
-<!--  <video src="<%#= url_for(@video.file) %>" height="100" width="200" loop muted="muted" autoplay></video>-->
 </div>
+
+
+<p>
+  <strong>Diskusia:</strong>
+  <%= render @video.comentars %>
+  <%= render partial: 'comentars/form',locals: {video:@video} %>
+</p>
+
+
 
 <div>
   <%= link_to "Edit this video", edit_video_path(@video) %> |

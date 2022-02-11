@@ -1,11 +1,12 @@
-<h1>Editing comentar</h1>
+<h1>Edituj svoj komentár</h1>
 
-<%= render "form", comentar: @comentar %>
+<%= form_with method: :put do |form| %>
+  <%= form.label :Edituj_komentar, style: "display: block" %>
+  <%= form.text_area :text %>
+  <%= form.submit %>
+<% end %>
 
-<br>
 
 <div>
-  <%= link_to "Show this comentar", video_comentar_path(@comentar) %> |
-  <%= link_to "Back to comentars", video_comentars_path %>
-
+  <%= link_to "Back to comentars", video_path %>
 </div>
