@@ -24,6 +24,11 @@
                 <%= button_to "Logout", logout_path , method: :delete, class:"btn btn-outline-secondary" %>
               </li>
                 <%end %>
+              <%if !session[:user_id].nil?%>
+                <li class="nav-item">
+                  <%= button_to "Pridaj video", videos_path , class:"btn btn-outline-secondary" %>
+                </li>
+              <%end %>
               <%if session[:user_id].nil?%>
               <li class="nav-item">
                 <%= button_to "Prihlásenie", sign_in_path , method: :get, class:"btn btn-outline-secondary" %>

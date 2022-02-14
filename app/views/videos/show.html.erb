@@ -11,12 +11,16 @@
   <%= render @video.comentars %>
   <%= render partial: 'comentars/form',locals: {video:@video} %>
 </p>
-
-
+<%course=Course.find_by(:id=>@video.course_id) %>
+<%if !(course.videos.where("id > ?", params[:id]).first).nil?%>
+  <%= link_to "Nasledujúce video", video_path(course.videos.where("id > ?", params[:id]).first) %>
+<%end %>
+<%if !(course.videos.where("id < ?", params[:id]).last).nil?%>
+  <%= link_to "Predchádzajúce video", video_path( course.videos.where("id < ?", params[:id]).last) %>
+<%end %>
 
 <div>
-  <%= link_to "Edit this video", edit_video_path(@video) %> |
-  <%= link_to "Back to videos", videos_path %>
-
+  <%= link_to "Edit this video", edit_video_path(@video) %>
+  <%= link_to "Späť na kurz", course_path(:id=>course.id) %>
   <%= button_to "Destroy this video", @video, method: :delete %>
 </div>
