@@ -35,7 +35,22 @@ class ApplicationPolicy
   def destroy?
     false
   end
+  def teacher?
+    if @user.nil?
+      false
+    else
+      @user.roles.ids[0] == 2
+    end
 
+  end
+  def admin?
+    if @user.nil?
+      false
+    else
+      @user.roles.ids[0]== 1
+    end
+
+  end
   class Scope
     def initialize(user, scope)
       @user = user

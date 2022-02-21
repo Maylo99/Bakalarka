@@ -7,9 +7,10 @@
   <%@courses.each do |course| %>
     <%= render course %>
     <p>
-      <%= link_to "Show this course", course %>
+      <%= link_to "Show this courses", course %>
     </p>
   <% end %>
 </div>
-
-<%= link_to "New course", new_course_path %>
+<%if policy(@courses).new? %>
+  <%= link_to "New courses", new_course_path %>
+<%end %>

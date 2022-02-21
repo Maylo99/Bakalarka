@@ -15,7 +15,7 @@ class CoursesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should create course" do
+  test "should create courses" do
     assert_difference("Course.count") do
       post courses_url, params: { course: { description: @course.description, title: @course.title } }
     end
@@ -23,7 +23,7 @@ class CoursesControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to course_url(Course.last)
   end
 
-  test "should show course" do
+  test "should show courses" do
     get course_url(@course)
     assert_response :success
   end
@@ -33,12 +33,12 @@ class CoursesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should update course" do
+  test "should update courses" do
     patch course_url(@course), params: { course: { description: @course.description, title: @course.title } }
     assert_redirected_to course_url(@course)
   end
 
-  test "should destroy course" do
+  test "should destroy courses" do
     assert_difference("Course.count", -1) do
       delete course_url(@course)
     end

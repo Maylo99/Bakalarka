@@ -20,7 +20,11 @@
 <%end %>
 
 <div>
-  <%= link_to "Edit this video", edit_video_path(@video) %>
+  <%if policy(@video).edit? %>
+    <%= link_to "Edit this video", edit_video_path(@video) %>
+  <%end %>
   <%= link_to "Späť na kurz", course_path(:id=>course.id) %>
-  <%= button_to "Destroy this video", @video, method: :delete %>
-</div>
+  <%if policy(@video).destroy? %>
+    <%= button_to "Destroy this video", @video, method: :delete %>
+  <%end %>
+    </div>

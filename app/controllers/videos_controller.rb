@@ -17,6 +17,8 @@ class VideosController < ApplicationController
 
   # GET /videos/1/edit
   def edit
+    @video= Video.find_by(params[:id])
+    authorize @video
   end
 
   # POST /videos or /videos.json
@@ -49,6 +51,7 @@ class VideosController < ApplicationController
 
   # DELETE /videos/1 or /videos/1.json
   def destroy
+    authorize @video
     @video.destroy
 
     respond_to do |format|
