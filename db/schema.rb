@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_19_111716) do
+ActiveRecord::Schema.define(version: 2022_02_22_085734) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -67,8 +67,25 @@ ActiveRecord::Schema.define(version: 2022_01_19_111716) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "open_questions", force: :cascade do |t|
+    t.text "question"
+    t.string "correctAnswer"
+    t.integer "points"
+    t.integer "test_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["test_id"], name: "index_open_questions_on_test_id"
+  end
+
   create_table "roles", force: :cascade do |t|
     t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "tests", force: :cascade do |t|
+    t.integer "totalPoints"
+    t.text "title"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -99,4 +116,5 @@ ActiveRecord::Schema.define(version: 2022_01_19_111716) do
   add_foreign_key "assignments", "users"
   add_foreign_key "comentars", "users"
   add_foreign_key "comentars", "videos"
+  add_foreign_key "open_questions", "tests"
 end

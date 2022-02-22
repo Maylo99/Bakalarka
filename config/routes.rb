@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :open_questions
+  resources :tests
   resources :videos do
     resources :comentars, only: [:create, :destroy, :edit]
     put 'comentars/:id/edit', to: 'comentars#update'
