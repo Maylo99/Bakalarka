@@ -1,0 +1,63 @@
+<%= form_with(model: test,local: true) do |form| %>
+  <% if test.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(test.errors.count, "error") %> prohibited this test from being saved:</h2>
+
+      <ul>
+        <% test.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :totalPoints, style: "display: block" %>
+    <%= form.number_field :totalPoints %>
+  </div>
+
+  <div>
+    <%= form.label :title, style: "display: block" %>
+    <%= form.text_area :title %>
+  </div>
+
+  <div>
+    <%=form.fields_for :open_questions do |builder| %>
+      <%= render 'tests/open_question_fields', builder: builder %>
+    <%end %>
+    <%= link_to_add_fields 'Pridaj otvorenú otázku',form, :open_questions%>
+  </div>
+  <%= form.fields_for :multiple_choice_questions do |builder| %>
+    <%= render 'tests/multiple_choice_question_fields', builder: builder %>
+  <% end %>
+  <div>
+    <br>
+    <%= link_to_add_fields 'Pridaj multiple',form, :multiple_choice_questions%>
+    <br>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
+<script>
+    $('form').on('click','.add_fields',function (event){
+        var regexp, time;
+        time=new Date().getTime();
+        regexp=new RegExp($(this).data('id'),'g');
+        $(this).before($(this).data('fields').replace(regexp,time));
+        return event.preventDefault();
+    });
+
+
+    // $(".group_goal a.remove-fields").on("click", function(e){
+    //     console.log($(this).parent(".group_goal"))
+    //     $(this).parent(".group_goal").remove();
+    // });
+    // $('form').on('click','.remove_fields',function (event){
+    //     $(this).prev('input[type=hidden]').val('1');
+    //     $(this).closest('fieldset').hide();
+    //     return event.preventDefault();
+    // });
+
+</script>
