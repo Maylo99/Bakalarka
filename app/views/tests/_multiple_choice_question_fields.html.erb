@@ -1,0 +1,22 @@
+<div>
+  <%= builder.label :question %>
+  <%= builder.text_field :question %>
+  <%= builder.label :possiblePoints %>
+  <%= builder.number_field :possiblePoints %>
+  <%= builder.fields_for :choices do |builder2| %>
+    <%= render 'tests/choice_fields', builder: builder2 %>
+  <% end %>
+  <%= link_to_add_fields 'Pridaj choice', builder, :choices %>
+  <%= link_to "Odstráň multiple choice otázku", "#", class: 'remove-fields' %>
+  <script>
+      document.querySelectorAll('.remove-fields').forEach((el) => {
+          el.addEventListener('click', (e) => {
+              e.preventDefault();
+              console.log('event: ', e);
+              e.target.parentElement.remove();
+          })
+      })
+  </script>
+  <br><br>
+
+</div>

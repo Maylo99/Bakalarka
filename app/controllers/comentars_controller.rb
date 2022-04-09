@@ -2,7 +2,7 @@ class ComentarsController < ApplicationController
   before_action :get_video
   before_action :set_comentar,  only: %i[edit,update]
   def create
-    user=set_current_user
+    user=current_user
     @comentar=user.comentars.new(comentar_params)
     if @comentar.save
       redirect_to video_path(params[:video_id])

@@ -1,0 +1,18 @@
+<div>
+  <%=builder.label :answer %>
+  <%=builder.text_field :answer %>
+  <%=builder.label :partialPoints %>
+  <%=builder.number_field :partialPoints%>
+  <%=builder.label :is_true %>
+  <%=builder.select :is_true, options_for_select([true,false]) %>
+  <%= link_to "Odstráň choice otázku", "#", class: 'remove-fields' %>
+  <script>
+      document.querySelectorAll('.remove-fields').forEach((el) => {
+          el.addEventListener('click', (e) => {
+              e.preventDefault();
+              console.log('event: ', e);
+              e.target.parentElement.remove();
+          })
+      })
+  </script>
+</div>

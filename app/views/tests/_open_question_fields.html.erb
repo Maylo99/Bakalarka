@@ -1,8 +1,24 @@
-<%=builder.label :question %>
-<%=builder.text_field :question %>
+<div class="group-goal">
 
-<%=builder.label :correctAnswer %>
-<%=builder.text_field :correctAnswer %>
+  <%= builder.label :question %>
+  <%= builder.text_field :question %>
 
-<%=builder.label :points %>
-<%=builder.number_field :points %>
+  <%= builder.label :correctAnswer %>
+  <%= builder.text_field :correctAnswer %>
+
+  <%= builder.label :points %>
+  <%= builder.number_field :points %>
+
+  <%= builder.hidden_field :_destroy %>
+  <%= link_to "Odstráň otvorenú otázku", "#", class: 'remove-fields' %>
+  <script>
+      document.querySelectorAll('.remove-fields').forEach((el) => {
+          el.addEventListener('click', (e) => {
+              e.preventDefault();
+              console.log('event: ', e);
+              e.target.parentElement.remove();
+          })
+      })
+  </script>
+</div>
+

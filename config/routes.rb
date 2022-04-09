@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :choices
+  resources :multiple_choice_questions
   resources :open_questions
   resources :tests
   resources :videos do

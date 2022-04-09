@@ -1,11 +1,25 @@
-<div>Vitaj na stránke LearnIT</div>
-<div class="bg-info container-fluid d-block">
+<section class="bg-dark text-light p-5 text-center text-sm-start">
+  <div class="container">
+    <div class="d-sm-flex align-items-center justify-content-between">
+      <div>
+        <h1>Staň sa<span class="text-warning"> Web Developerom!
+        </span></h1>
+        <h3>
+          Rozšírte svoje znalosti v rôznych oblastiach spolu s <span class="text-danger">LearnIT</span>!
+        </h3>
+        <h5> Ak nie si registrovaný stačí pár klikov a budeš mať prístup k nadupaným kurzom!!
+          Registračný formulár nájdeš  <%= link_to "TU!", sign_up_path, class: "link-danger" %></h5>
+      </div>
+      <%= image_tag("logo.png", class: 'img-fluid w-25 rounded d-none d-sm-block') %>
+    </div>
+  </div>
+</section>
+<div class=" container-fluid d-block">
   <div class="row">
     <div class="col-sm">
-      <p class="w-50">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+
     </div>
     <div class="col-sm">
-      <%=image_tag("logo.png") %>
     </div>
   </div>
 </div>
