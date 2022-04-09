@@ -17,8 +17,7 @@
 
   <div>
     <%= form.label :course_id, :course_id,style: "display: block" %>
-    <%=form.number_field :course_id %>
-    <%#=form.collection_select(:course_id,Course.all,:id,:title)%>
+    <%=form.collection_select(:course_id,Course.all,:id,:title)%>
 
     <%#= options_for_select :video, :course_id, Course.all.collect { |c| [ c.title, c.id ] }, { include_blank: true } %>
   </div>
