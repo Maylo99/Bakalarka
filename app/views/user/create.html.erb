@@ -1,29 +1,62 @@
-<h1>Môj profil</h1>
-<%= form_with model: @user, url: update_user_path  do |form| %>
-  <%if @user.errors.any? %>
-    <div class="alert alert-danger">
-      <%@user.errors.full_messages.each do |message|%>
-        <div><%= message %></div>
-      <%end%>
+<section class="Form my-4 mx-5 bg-dark  text-light text-center text-sm-start rounded">
+  <div class="container ">
+    <div class="row d-sm-flex align-items-center justify-content-between">
+      <div class="col-lg-5 ">
+        <div class="lead my-4">
+          <%= image_tag("logo.png", class: 'img-fluid w-100 rounded d-none d-sm-block') %>
+          <p>
+            V prípade, že si zabudol heslo alebo ho chceš iba zmeniť môžeš tak urobiť
+            <%= link_to "TU!", password_reset_path, class: "link-danger" %>
+          </p>
+        </div>
+      </div>
+      <div class="col-lg-5">
+        <%= form_with model: @user, url: update_user_path do |form| %>
+          <% if @user.errors.any? %>
+            <div class="alert alert-danger">
+              <% @user.errors.full_messages.each do |message| %>
+                <div><%= message %></div>
+              <% end %>
+            </div>
+          <% end %>
+          <form>
+            <div class="form-row">
+              <div class="col-lg-7">
+                <h1 class="text-danger">Môj profil</h1>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="col-lg-7">
+                <%= form.label :name, "Meno", class: "form-label" %>
+                <%= form.text_field :name, class: "form-control" %>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="col-lg-7">
+                <%= form.label :last_name, "Priezvisko", class: "form-label" %>
+                <%= form.text_field :last_name, class: "form-control" %>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="col-lg-7">
+                <%= form.label :age, "Vek", class: "form-label" %>
+                <%= form.number_field :age, class: "form-control" %>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="col-lg-7">
+                <%= form.label :gender, "Pohlavie", class: "form-label" %>
+                <%= form.text_field :gender, class: "form-control" %>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="col-lg-7">
+                <%= form.submit "Potvrď zmeny", class: "btn btn-danger" %>
+        <% end %>
+        </div>
+        </div>
+        </form>
+      </div>
     </div>
-  <%end%>
-  <div class="mb-3">
-    <%= form.label :name, "Meno",class:"form-label"%>
-    <%= form.text_field :name , class:"form-control"%>
   </div>
-  <div class="mb-3">
-    <%= form.label :last_name, "Priezvisko",class:"form-label"%>
-    <%= form.text_field :last_name , class:"form-control"%>
-  </div>
-  <div class="mb-3">
-    <%= form.label :age, "Vek",class:"form-label"%>
-    <%= form.number_field :age , class:"form-control"%>
-  </div>
-  <div class="mb-3">
-    <%= form.label :gender, "Pohlavie",class:"form-label"%>
-    <%= form.text_field :gender , class:"form-control"%>
-  </div>
-  <div class="mb-3">
-    <%= form.submit "Submit", class: "btn btn-primary"%>
-  </div>
-<%end%>
+</section>
