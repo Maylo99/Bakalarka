@@ -1,14 +1,16 @@
 <div id="<%= dom_id comentar %>">
+  <div class="row text-light">
+    <div class="col-sm-8 col-md-9 col-lg-8 bg-opacity-75 bg-dark border rounded">
+      <%= link_to fa_icon("times-circle"), video_comentar_path(:id => comentar.id, :video_id => comentar.video_id), method: :delete, style: style = 'color:red !important;' %>
+      <small class="text-warning">  <%= fa_icon "calendar" %> <%= comentar.created_at.to_date %></small>
+        <br>
 
-  <p class="bg-info">
-<!--    <strong>Date:</strong>-->
-    <%#= comentar.created_at%>
-    <strong>Text:</strong>
-    <%= comentar.text %>
-    <%= comentar.id %>
-    <br>
-    <small><%= comentar.user.email%></small>
-    <%=link_to "edit", edit_video_comentar_url(:id=>comentar.id,:video_id=>comentar.video_id)%>
-    <%= button_to "Destroy this comentar", video_comentar_path(:id=>comentar.id,:video_id=>comentar.video_id), method: :delete %>
-  </p>
+        <div>
+          <strong class="text-dark">  <%= fa_icon "user-circle" %><%= comentar.user.name %></strong></div>
+        <div>
+          <strong><%= comentar.text %></strong>
+        </div>
+        <%= link_to fa_icon("pencil"), edit_video_comentar_url(:id => comentar.id, :video_id => comentar.video_id) %>
+    </div>
+  </div>
 </div>

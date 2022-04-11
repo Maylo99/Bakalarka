@@ -1,63 +1,60 @@
-<%= form_with(model: test,local: true) do |form| %>
-  <% if test.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(test.errors.count, "error") %> prohibited this test from being saved:</h2>
-
-      <ul>
-        <% test.errors.each do |error| %>
-          <li><%= error.full_message %></li>
+<section class="Form my-4 mx-5 bg-dark  text-light text-center text-sm-start rounded">
+  <div class="container ">
+    <div class="row d-sm-flex align-items-center justify-content-between">
+      <div class="col-lg-12">
+        <%= form_with(model: test, local: true) do |form| %>
+          <% if test.errors.any? %>
+            <div style="color: red">
+              <h2><%= pluralize(test.errors.count, "error") %> prohibited this test from being saved:</h2>
+              <ul>
+                <% test.errors.each do |error| %>
+                  <li><%= error.full_message %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
+          <form>
+            <div class="row text-center">
+              <div class="col-6 text-warning">
+                <%= form.label :Celkový_počet_bodov, style: "display: block" %>
+                <%= form.number_field :totalPoints %>
+              </div>
+              <div class="col-6 text-warning">
+                <%= form.label :Názov_testu, style: "display: block" %>
+                <%= form.text_field :title %>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-6">
+                <div>
+                  <%= form.fields_for :open_questions do |builder| %>
+                    <%= render 'tests/open_question_fields', builder: builder %>
+                  <% end %>
+                  <%= link_to_add_fields 'Pridaj otvorenú otázku', form, :open_questions %>
+                </div>
+              </div>
+              <div class="col-6">
+                <%= form.fields_for :multiple_choice_questions do |builder| %>
+                  <%= render 'tests/multiple_choice_question_fields', builder: builder %>
+                <% end %>
+                <%= link_to_add_fields 'Pridaj multiple', form, :multiple_choice_questions %>
+              </div>
+            </div>
+            <%= form.submit %>
         <% end %>
-      </ul>
+        </form>
+      </div>
     </div>
-  <% end %>
+  </div>
+</section>
 
-  <div>
-    <%= form.label :totalPoints, style: "display: block" %>
-    <%= form.number_field :totalPoints %>
-  </div>
 
-  <div>
-    <%= form.label :title, style: "display: block" %>
-    <%= form.text_area :title %>
-  </div>
-
-  <div>
-    <%=form.fields_for :open_questions do |builder| %>
-      <%= render 'tests/open_question_fields', builder: builder %>
-    <%end %>
-    <%= link_to_add_fields 'Pridaj otvorenú otázku',form, :open_questions%>
-  </div>
-  <%= form.fields_for :multiple_choice_questions do |builder| %>
-    <%= render 'tests/multiple_choice_question_fields', builder: builder %>
-  <% end %>
-  <div>
-    <br>
-    <%= link_to_add_fields 'Pridaj multiple',form, :multiple_choice_questions%>
-    <br>
-  </div>
-
-  <div>
-    <%= form.submit %>
-  </div>
-<% end %>
 <script>
-    $('form').on('click','.add_fields',function (event){
+    $('form').on('click', '.add_fields', function (event) {
         var regexp, time;
-        time=new Date().getTime();
-        regexp=new RegExp($(this).data('id'),'g');
-        $(this).before($(this).data('fields').replace(regexp,time));
+        time = new Date().getTime();
+        regexp = new RegExp($(this).data('id'), 'g');
+        $(this).before($(this).data('fields').replace(regexp, time));
         return event.preventDefault();
     });
-
-
-    // $(".group_goal a.remove-fields").on("click", function(e){
-    //     console.log($(this).parent(".group_goal"))
-    //     $(this).parent(".group_goal").remove();
-    // });
-    // $('form').on('click','.remove_fields',function (event){
-    //     $(this).prev('input[type=hidden]').val('1');
-    //     $(this).closest('fieldset').hide();
-    //     return event.preventDefault();
-    // });
-
 </script>

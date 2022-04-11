@@ -1,16 +1,24 @@
-<div class="group-goal">
-
-  <%= builder.label :question %>
-  <%= builder.text_field :question %>
-
-  <%= builder.label :correctAnswer %>
-  <%= builder.text_field :correctAnswer %>
-
-  <%= builder.label :points %>
-  <%= builder.number_field :points %>
-
-  <%= builder.hidden_field :_destroy %>
-  <%= link_to "Odstráň otvorenú otázku", "#", class: 'remove-fields' %>
+<div class="group-goal rounded bg-warning text-danger mt-2 text-capitalize">
+  <div class="container">
+    <div>
+    <div class="col-12 justify-content-center">
+      <div class="row ">
+        <%= builder.label :Otázka,class: "form-label" %>
+        <%= builder.text_field :question,class: "form-control" %>
+      </div>
+      <div class="row">
+        <%= builder.label :Správna_odpoveď ,class: "form-label" %>
+        <%= builder.text_field :correctAnswer,class: "form-control" %>
+      </div>
+      <div class="row">
+        <%= builder.label :Body_za_danú_otázku,class: "form-label"  %>
+        <%= builder.number_field :points,class: "form-control" %>
+      </div>
+        <%= builder.hidden_field :_destroy %>
+        <%= link_to "Odstráň otvorenú otázku", "#", class: 'remove-fields' %>
+      </div>
+    </div>
+  </div>
   <script>
       document.querySelectorAll('.remove-fields').forEach((el) => {
           el.addEventListener('click', (e) => {
@@ -20,5 +28,6 @@
           })
       })
   </script>
+
 </div>
 

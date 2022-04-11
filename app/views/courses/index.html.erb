@@ -1,21 +1,18 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Kurzy</h1>
+<h1 class="text-center text-dark ">Kurzy</h1>
 
 <div class="container" id="courses">
-  <div class="row">
+  <div class="row " >
     <% @courses.each do |course| %>
-    <div class="col-4">
-      <div class="card">
+    <div class="class=col-12 col-md-6 col-lg-4 card-text-center mt-5 card-text-center ">
+      <div class="card bg-dark text-center text-danger">
         <%= render course %>
-        <%= link_to "Show this courses", course %>
+        <%= button_to "Zobraz kurz", course_path(course),method: :get, class: 'btn-warning btn-outline-secondary' %>
       </div>
-
     </div>
     <% end %>
   </div>
-
-
 </div>
 
 </div>

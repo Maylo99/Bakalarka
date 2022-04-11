@@ -1,30 +1,74 @@
 <p style="color: green"><%= notice %></p>
+<h1 class="text-center text-dark"> <%= @video.title %></h1>
+<% course = Course.find_by(:id => @video.course_id) %>
+<div class="container">
+  <div class="row">
+    <div class="col-10 col-sm-8 col-md-9 col-lg-10 mt-5">
+      <div class="video">
+        <%= video_tag(url_for(@video.file), controls: '', class: 'w-100') %>
+      </div>
+    </div>
+    <div class="col-2 col-sm-4 col-md-3 col-lg-2 mt-5 bg-opacity-75">
+      <ul class="list-group bg-dark ">
+        <% course.videos.each do |video| %>
+          <li class="list-group-item bg-dark text-center ">
+            <%= link_to video.title, video_path(video), class: 'text-warning' %>
+          </li>
+        <% end %>
+      </ul>
+      <p><%= @video.description %></p>
+    </div>
+  </div>
+</div>
 
-<%= render @video %>
-<div>
-  <%=video_tag(url_for(@video.file),controls: '') %>
+<div class="container">
+  <div class="row justify-content-evenly ">
+    <div class="col-4 start-0">
+      <% if !(course.videos.where("id < ?", params[:id]).last).nil? %>
+        <%= button_to "Predchádzajúce video", video_path(course.videos.where("id < ?", params[:id]).last), method: :get, class: 'btn btn-dark text-warning' %>
+      <% end %>
+      <div class="col-4 start-0">
+        <%= button_to "Späť na kurz", course_path(:id => course.id), class: 'btn btn-dark text-warning ' %>
+      </div>
+    </div>
+      <div class="col-4 start-0">
+      <% if !(course.videos.where("id > ?", params[:id]).first).nil? %>
+        <%= button_to "Nasledujúce video", video_path(course.videos.where("id > ?", params[:id]).first), method: :get, class: 'btn btn-dark text-warning m-5 mb-0 mt-0' %>
+      <% end %>
+    </div>
+  </div>
+ </div>
+
+
+
+<div class="container">
+  <h2 class=" text-dark mt-3">Diskusia</h2>
+  <div class="row">
+    <div class="col-6">
+      <%= render @video.comentars %>
+    </div>
+    <div class="col-6">
+      <%= render partial: 'comentars/form', locals: { video: @video } %>
+      <div class="row">
+        <% if policy(@video).edit? %>
+          <%= link_to "Edit this video", edit_video_path(@video) %>
+        <% end %>
+
+        <% if policy(@video).destroy? %>
+          <%= button_to "Destroy this video", @video, method: :delete %>
+        <% end %>
+      </div>
+    </div>
+
+
+    </div>
+  </div>
 </div>
 
 
-<p>
-  <strong>Diskusia:</strong>
-  <%= render @video.comentars %>
-  <%= render partial: 'comentars/form',locals: {video:@video} %>
-</p>
-<%course=Course.find_by(:id=>@video.course_id) %>
-<%if !(course.videos.where("id > ?", params[:id]).first).nil?%>
-  <%= link_to "Nasledujúce video", video_path(course.videos.where("id > ?", params[:id]).first) %>
-<%end %>
-<%if !(course.videos.where("id < ?", params[:id]).last).nil?%>
-  <%= link_to "Predchádzajúce video", video_path( course.videos.where("id < ?", params[:id]).last) %>
-<%end %>
 
-<div>
-  <%if policy(@video).edit? %>
-    <%= link_to "Edit this video", edit_video_path(@video) %>
-  <%end %>
-  <%= link_to "Späť na kurz", course_path(:id=>course.id) %>
-  <%if policy(@video).destroy? %>
-    <%= button_to "Destroy this video", @video, method: :delete %>
-  <%end %>
-    </div>
+
+<div class="col-sm-8 col-md-9 col-lg-8 bg-opacity-75 bg-dark border rounded">
+
+
+</div>

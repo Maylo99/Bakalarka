@@ -1,8 +1,15 @@
 <p style="color: green"><%= notice %></p>
+<div class="text-dark text-center ">
+  <h1>
+    <%=@course.title %>
+  </h1>
 
-<%= render @course %>
+</div>
+
+<div>
 
 
+</div>
 <ul class="list-group">
   <%@course.videos.each do |video|%>
     <li class="list-group-item"><%=link_to video.title, video_path(video)%></li>

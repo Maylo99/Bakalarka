@@ -1,22 +1,24 @@
-<div>
-  <%= builder.label :question %>
-  <%= builder.text_field :question %>
-  <%= builder.label :possiblePoints %>
-  <%= builder.number_field :possiblePoints %>
-  <%= builder.fields_for :choices do |builder2| %>
-    <%= render 'tests/choice_fields', builder: builder2 %>
-  <% end %>
-  <%= link_to_add_fields 'Pridaj choice', builder, :choices %>
-  <%= link_to "Odstráň multiple choice otázku", "#", class: 'remove-fields' %>
-  <script>
-      document.querySelectorAll('.remove-fields').forEach((el) => {
-          el.addEventListener('click', (e) => {
-              e.preventDefault();
-              console.log('event: ', e);
-              e.target.parentElement.remove();
-          })
-      })
-  </script>
-  <br><br>
-
+<div class="rounded bg-warning text-danger mt-2 text-capitalize justify-content-center">
+  <div class="container">
+    <%= builder.label :Otázka, class: "form-label" %>
+    <%= builder.text_field :question, class: "form-control" %>
+    <%= builder.label :Počet_bodov_za_otázku, class: "form-label" %>
+    <%= builder.number_field :possiblePoints, class: "form-control" %>
+    <div>
+      <%= builder.fields_for :choices do |builder2| %>
+        <%= render 'tests/choice_fields', builder: builder2 %>
+      <% end %>
+    </div>
+  </div>
+  <%= link_to "Odstráň otázku", "#", class: 'remove-fields btn btn-danger' %>
+  <%= link_to_add_fields 'Pridaj možnosť', builder, :choices %>
 </div>
+<script>
+    document.querySelectorAll('.remove-fields').forEach((el) => {
+        el.addEventListener('click', (e) => {
+            e.preventDefault();
+            console.log('event: ', e);
+            e.target.parentElement.remove();
+        })
+    })
+</script>

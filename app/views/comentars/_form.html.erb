@@ -1,5 +1,7 @@
-<%= form_with url: video_comentars_path(video) do |form| %>
-  <%= form.label :Pridaj_komentár, style: "display: block" %>
-  <%= form.text_area :text %>
-  <%= form.submit %>
-<% end %>
+<div class="bg-opacity-75 bg-dark border rounded">
+  <%= form_with url: video_comentars_path(video) do |form| %>
+    <%= form.label :Pridaj_komentár, style: "display: block" %>
+    <%= form.text_area :text %>
+    <%= form.submit %>
+  <% end %>
+</div>

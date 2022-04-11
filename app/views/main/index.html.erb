@@ -14,12 +14,21 @@
     </div>
   </div>
 </section>
-<div class=" container-fluid d-block">
-  <div class="row">
-    <div class="col-sm">
 
+<div class="container" id="courses">
+  <div class="col-6">
+    <div class="row " >
+      <% @courses.each do |course| %>
+        <div class="class=col-12 col-md-6 col-lg-4 card-text-center mt-5">
+          <div class="card bg-dark text-center text-danger">
+            <%= render course %>
+            <%= button_to "Zobraz kurz", course_path(course),method: :get, class: 'btn-warning btn-outline-secondary mb-3' %>
+          </div>
+        </div>
+      <% end %>
     </div>
-    <div class="col-sm">
-    </div>
+  </div>
+  <div class="col-6">
+
   </div>
 </div>
