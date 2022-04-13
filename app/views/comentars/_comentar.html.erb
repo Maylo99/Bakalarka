@@ -1,7 +1,7 @@
 <div id="<%= dom_id comentar %>">
   <div class="row text-light">
     <div class="col-sm-8 col-md-9 col-lg-8 bg-opacity-75 bg-dark border rounded">
-      <%= link_to fa_icon("times-circle"), video_comentar_path(:id => comentar.id, :video_id => comentar.video_id), method: :delete, style: style = 'color:red !important;' %>
+      <%= link_to fa_icon("times-circle"), video_comentar_url(:id => comentar.id, :video_id => comentar.video_id),method: "delete", style: style = 'color:red !important;' %>
       <small class="text-warning">  <%= fa_icon "calendar" %> <%= comentar.created_at.to_date %></small>
         <br>
 

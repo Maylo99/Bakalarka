@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_05_153843) do
+ActiveRecord::Schema.define(version: 2022_04_12_173918) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -102,6 +102,25 @@ ActiveRecord::Schema.define(version: 2022_03_05_153843) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "take_answers", force: :cascade do |t|
+    t.text "user_answer"
+    t.integer "take_test_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "question_id"
+    t.index ["take_test_id"], name: "index_take_answers_on_take_test_id"
+  end
+
+  create_table "take_tests", force: :cascade do |t|
+    t.integer "gets_points"
+    t.integer "user_id", null: false
+    t.integer "test_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["test_id"], name: "index_take_tests_on_test_id"
+    t.index ["user_id"], name: "index_take_tests_on_user_id"
+  end
+
   create_table "tests", force: :cascade do |t|
     t.integer "totalPoints"
     t.text "title"
@@ -138,4 +157,7 @@ ActiveRecord::Schema.define(version: 2022_03_05_153843) do
   add_foreign_key "comentars", "videos"
   add_foreign_key "multiple_choice_questions", "tests"
   add_foreign_key "open_questions", "tests"
+  add_foreign_key "take_answers", "take_tests"
+  add_foreign_key "take_tests", "tests"
+  add_foreign_key "take_tests", "users"
 end

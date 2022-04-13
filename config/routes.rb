@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :take_answers, :except => :new
+  get 'do_test', to: 'take_test#new'
+  get 'my_tests', to: 'take_tests#show_my_tests'
+  resources :take_tests
   resources :choices
   resources :multiple_choice_questions
   resources :open_questions
@@ -13,7 +17,7 @@ Rails.application.routes.draw do
 
   get 'sign_in', to: 'sessions#new'
   post 'sign_in', to: 'sessions#create'
-  delete "logout", to:  "sessions#destroy"
+  delete "logout", to: "sessions#destroy"
 
   get 'update_user', to: 'user#create'
   patch 'update_user', to: 'user#update'

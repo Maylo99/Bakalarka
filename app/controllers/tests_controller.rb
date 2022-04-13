@@ -53,22 +53,23 @@ class  TestsController < ApplicationController
 
   # DELETE /tests/1 or /tests/1.json
   def destroy
-    @test=Test.find(params[:test_id])
-    @open_question=OpenQuestion.find(params[:id])
-    if @open_question.destroy
-      flash[:notice]="Uspesne zmazane"
-      redirect_to @test
-    else
-      flash[:error]="Nepodarilo sa"
-      render :show
-      end
-    end
-    # @test.destroy
-    #
-    # respond_to do |format|
-    #   format.html { redirect_to tests_url, notice: "Test was successfully destroyed." }
-    #   format.json { head :no_content }
+    # @test=Test.find(params[:test_id])
+    # @open_question=OpenQuestion.find(params[:id])
+    # if @open_question.destroy
+    #   flash[:notice]="Uspesne zmazane"
+    #   redirect_to @test
+    # else
+    #   flash[:error]="Nepodarilo sa"
+    #   render :show
+    #   end
     # end
+    @test.destroy
+
+    respond_to do |format|
+      format.html { redirect_to tests_url, notice: "Test was successfully destroyed." }
+      format.json { head :no_content }
+    end
+    end
 
 
   private

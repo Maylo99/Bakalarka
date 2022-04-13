@@ -14,6 +14,9 @@
                 <li class="nav-item">
                     <%= button_to "Kurzy", courses_path, :method => "get", class:"btn btn-outline-secondary"%>
                 </li>
+              <li class="nav-item">
+                <%= button_to "Moje testy", take_tests_path, :method => "get", class:"btn btn-outline-secondary"%>
+              </li>
               <%if !session[:user_id].nil?%>
               <li class="nav-item">
                 <%= button_to "Môj profil", update_user_path, method: :get, class:"btn btn-outline-secondary "%>
