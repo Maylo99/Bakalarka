@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Take answers</h1>
+
+<div id="take_answers">
+  <% @take_answers.each do |take_answer| %>
+    <%= render take_answer %>
+    <p>
+      <%= link_to "Show this take answer", take_answer %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New take answer", new_take_answer_path %>

@@ -1,0 +1,18 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Testy na vypracovanie</h1>
+
+<div id="tests">
+  <% @tests.each do |test| %>
+    <div class="bg-warning">
+      <%=test.title %>
+      <%=test.id %>
+
+    </div>
+    <p>
+      <%=link_to "Vypracované testy", my_tests_path %>
+      <%= link_to "Vypracovať test", new_take_test_path(:test_id=>test.id)%>
+    </p>
+  <% end %>
+</div>
+

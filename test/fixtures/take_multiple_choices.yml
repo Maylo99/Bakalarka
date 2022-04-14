@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  choice: MyText
+  is_correct: false
+  take_test: one
+  choice_id: 1
+
+two:
+  choice: MyText
+  is_correct: false
+  take_test: two
+  choice_id: 1
