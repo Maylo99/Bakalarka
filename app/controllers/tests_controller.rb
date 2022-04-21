@@ -81,8 +81,8 @@ class  TestsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def test_params
       params.require(:test).
-            permit(:totalPoints, :title, open_questions_attributes: [:id, :question, :points, :correctAnswer],
-                   multiple_choice_questions_attributes:[:id,:question,:possiblePoints,
-                                                         choices_attributes:[:id,:partialPoints,:answer,:is_true]])
+            permit(:totalPoints, :title,:_destroy, open_questions_attributes: [:id, :question, :points, :_destroy,:correctAnswer],
+                   multiple_choice_questions_attributes:[:id,:question,:_destroy,:possiblePoints,
+                                                         choices_attributes:[:id,:_destroy,:partialPoints,:answer,:is_true]])
     end
 end

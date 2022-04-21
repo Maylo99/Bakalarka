@@ -10,8 +10,10 @@
       <% end %>
     </div>
   </div>
-  <%= link_to "Odstráň otázku", "#", class: 'remove-fields btn btn-danger' %>
+  <% if current_page?(action: 'new') %>
+  <%=  link_to "Odstráň otázku", "#", class: 'remove-fields btn btn-danger'  %>
   <%= link_to_add_fields 'Pridaj možnosť', builder, :choices %>
+  <% end %>
 </div>
 <script>
     document.querySelectorAll('.remove-fields').forEach((el) => {

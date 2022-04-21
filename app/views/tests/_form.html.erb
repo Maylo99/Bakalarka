@@ -30,14 +30,18 @@
                   <%= form.fields_for :open_questions do |builder| %>
                     <%= render 'tests/open_question_fields', builder: builder %>
                   <% end %>
-                  <%= link_to_add_fields 'Pridaj otvorenú otázku', form, :open_questions %>
+                  <% if current_page?(action: "new") %>
+                    <%= link_to_add_fields 'Pridaj otvorenú otázku', form, :open_questions %>
+                  <% end %>
                 </div>
               </div>
               <div class="col-6">
                 <%= form.fields_for :multiple_choice_questions do |builder| %>
                   <%= render 'tests/multiple_choice_question_fields', builder: builder %>
                 <% end %>
-                <%= link_to_add_fields 'Pridaj multiple', form, :multiple_choice_questions %>
+                <% if current_page?(action: "new") %>
+                  <%= link_to_add_fields 'Pridaj multiple', form, :multiple_choice_questions %>
+                <% end %>
               </div>
             </div>
             <%= form.submit %>

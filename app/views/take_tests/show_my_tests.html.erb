@@ -1,3 +1,4 @@
 <%@take_tests.each do |t| %>
   <%= render t %>
+  <%= button_to "Destroy this courses", t, method: :delete%>
 <% end %>

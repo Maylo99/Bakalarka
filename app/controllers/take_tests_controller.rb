@@ -19,8 +19,7 @@ class TakeTestsController < ApplicationController
     @take_test.take_multiple_choices.build
     @take_test.user_id=session[:user_id]
     @take_test.test_id=params[:test_id]
-
-    session[:test_id]=params[:test_id];
+    session[:test_id]=params[:test_id]
   end
 
   # GET /take_tests/1/edit
@@ -77,6 +76,8 @@ class TakeTestsController < ApplicationController
 
   # DELETE /take_tests/1 or /take_tests/1.json
   def destroy
+    @take_test.update(:user_id=>nil)
+    @take_test.update(:test_id=>nil)
     @take_test.destroy
 
     respond_to do |format|

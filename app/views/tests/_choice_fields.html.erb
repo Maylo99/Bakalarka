@@ -22,7 +22,9 @@
         </div>
       </div>
       </div>
+    <% if current_page?(action: 'new') %>
     <%= link_to "Odstráň možnosť", "#", class: 'remove-fields' %>
+      <%end %>
   </div>
 </div>
 <script>
