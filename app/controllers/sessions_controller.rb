@@ -5,12 +5,15 @@ class SessionsController <ApplicationController
 
   def create
     user = User.find_by(email: params[:email])
-    session[:user_id]=user.id
-    if user.present? && user.authenticate(params[:password])
-      redirect_to root_path, notice: "Logged"
+    if(user.nil?)
+      render :new, alert:"Check if email is correct"
     else
-      flash[:alert]="Something is wwong"
-      render :new
+      if (user.present? && user.authenticate(params[:password]))
+        session[:user_id]=user.id
+        redirect_to root_path, notice: "Logged"
+      else
+        redirect_to sign_in_path, alert: :"Wrong password try again!"
+      end
     end
   end
 

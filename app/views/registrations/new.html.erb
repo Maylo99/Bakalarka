@@ -28,19 +28,19 @@
             <div class="form-row">
               <div class="col-lg-7">
                 <%= form.label :name, "Meno", class: "form-label" %>
-                <%= form.text_field :name, class: "form-control" %>
+                <%= form.text_field :name, class: "form-control",placeholder: "Jozef" %>
               </div>
             </div>
             <div class="form-row">
               <div class="col-lg-7">
                 <%= form.label :last_name, "Priezvisko", class: "form-label" %>
-                <%= form.text_field :last_name, class: "form-control" %>
+                <%= form.text_field :last_name, class: "form-control ",placeholder: "Mrkvicka" %>
               </div>
             </div>
             <div class="form-row">
               <div class="col-lg-7">
-                <%= form.label :email, "Email", class: "form-label" %>
-                <%= form.text_field :email, class: "form-control" %>
+                <%= form.label :email, "Email", class: "orm-label"  %>
+                <%= form.text_field :email, class: "form-control",placeholder: "name.lastname55@gmail.com" %>
               </div>
             </div>
             <div class="form-row">
@@ -52,7 +52,7 @@
             <div class="form-row">
               <div class="col-lg-7">
                 <%= form.label :gender, "Pohlavie", class: "form-label" %>
-                <%= form.text_field :gender, class: "form-control" %>
+                <%= form.select :gender, [["Muž","Muž"],["Žena","Žena"]], {}, {class: "form-control"} %>
               </div>
             </div>
             <div class="form-row">

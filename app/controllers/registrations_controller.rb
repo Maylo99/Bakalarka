@@ -1,6 +1,6 @@
 class RegistrationsController < ApplicationController
   def new
-    @user = User.new
+     @user = User.new
   end
 
   def create
@@ -8,7 +8,7 @@ class RegistrationsController < ApplicationController
     if @user.save
       redirect_to sign_in_path, notice: "Succesfuly created account"
     else
-      render :new, notice: "Not created account"
+      redirect_to sign_up_path, alert: @user.errors.full_messages.first
     end
   end
 
