@@ -1,4 +1,4 @@
-<section class="bg-dark text-light p-5 text-center text-sm-start">
+<section class="bg-dark text-light p-5 text-center text-sm-start pt-0 pb-1">
   <div class="container">
     <div class="d-sm-flex align-items-center justify-content-between">
       <div>
@@ -7,8 +7,11 @@
         <h3>
           Rozšírte svoje znalosti v rôznych oblastiach spolu s <span class="text-danger">LearnIT</span>!
         </h3>
-        <h5> Ak nie si registrovaný stačí pár klikov a budeš mať prístup k nadupaným kurzom!!
-          Registračný formulár nájdeš  <%= link_to "TU!", sign_up_path, class: "link-danger" %></h5>
+        <% if session[:user_id].nil? and policy(:video).new? %>
+          <h5> Ak nie si registrovaný stačí pár klikov a budeš mať prístup k nadupaným kurzom!!
+            Registračný formulár nájdeš  <%= link_to "TU!", sign_up_path, class: "link-danger" %></h5>
+          <%end %>
+
       </div>
       <%= image_tag("logo.png", class: 'img-fluid w-25 rounded d-none d-sm-block') %>
     </div>
@@ -19,7 +22,7 @@
   <div class="col-6">
     <div class="row " >
       <% @courses.each do |course| %>
-        <div class="class=col-12 col-md-6 col-lg-4 card-text-center mt-5">
+        <div class="class=col-12 col-md-6 col-lg-4 card-text-center mt-5 mb-5">
           <div class="card bg-dark text-center text-danger">
             <%= render course %>
             <%= button_to "Zobraz kurz", course_path(course),method: :get, class: 'btn-warning btn-outline-secondary mb-3' %>

@@ -1,18 +1,28 @@
 <p style="color: green"><%= notice %></p>
-
-<h1>Testy na vypracovanie</h1>
-
-<div id="tests">
-  <% @tests.each do |test| %>
-    <div class="bg-warning">
-      <%=test.title %>
-      <%=test.id %>
-
+<h1 class="text-center">Testy na vypracovanie</h1>
+<div class="container" id="courses">
+  <div class="col-2"></div>
+  <div class="col-8">
+    <div class="row ">
+      <%if @tests.nil?%>
+          <h5>Všetky dostupné testy si vypracoval!</h5>
+        <%end %>
+      <% @tests.each do |test| %>
+        <% take_test = TakeTest.where(["user_id =:user and test_id=:test", { user: session[:user_id], test: test.id }]) %>
+        <% if take_test.first.nil? %>
+          <div class="class=col-12 col-md-6 col-lg-4 card-text-center mt-5 mb-5">
+            <div class="card bg-dark text-center text-danger">
+              <div class="card-body">
+                <h5 class="card-title"><%= test.title %></h5>
+                <p class="card-text">Počet bodov:<%= test.totalPoints %></p>
+              </div>
+              <%= link_to "Vypracovať test", new_take_test_path(:test_id => test.id) %>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
     </div>
-    <p>
-      <%=link_to "Vypracované testy", my_tests_path %>
-      <%= link_to "Vypracovať test", new_take_test_path(:test_id=>test.id)%>
-    </p>
-  <% end %>
+    <div class="col-2"></div>
+  </div>
 </div>
-
+<%= link_to "Vypracované testy", my_tests_path %>

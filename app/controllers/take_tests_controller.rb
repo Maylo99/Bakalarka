@@ -5,6 +5,7 @@ class TakeTestsController < ApplicationController
   # GET /take_tests or /take_tests.json
   def index
     @tests = Test.all
+
   end
 
   # GET /take_tests/1 or /take_tests/1.json
