@@ -6,6 +6,8 @@ class RegistrationsController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
+      role=Assignment.new(role_id: 3,user_id: @user.id)
+      role.save
       redirect_to sign_in_path, notice: "Succesfuly created account"
     else
       redirect_to sign_up_path, alert: @user.errors.full_messages.first

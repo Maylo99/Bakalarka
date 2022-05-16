@@ -1,0 +1,24 @@
+<table class="table">
+  <thead>
+  <th>Meno</th>
+  <th>Priezvisko</th>
+  <th>Email</th>
+  <th>Role</th>
+  </thead>
+  <tbody>
+  <% @users.each do |user| %>
+    <tr>
+      <% user.assignments.each do |a| %>
+        <td><%= user.name %></td>
+        <td><%= user.last_name %></td>
+        <td><%= user.email %></td>
+        <td><%= a.role_id %></td>
+      <% end %>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+
+
+

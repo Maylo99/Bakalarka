@@ -12,12 +12,14 @@ class UserController< ApplicationController
     if @user.update(edit_params)
       redirect_to root_path, notice: "Udaje boli uspesne zmenene"
     else
-      render :edit
+      render :create
     end
   end
 
   def edit_params
-    params.require(:user).permit(:gender, :age, :last_name, :name)
+    params.require(:user).permit(:gender, :age, :last_name, :name,roles_attributes:[:role_id])
   end
+
+
 
 end

@@ -51,6 +51,14 @@
             </div>
             <div class="form-row">
               <div class="col-lg-7">
+                <%= form.fields_for :assignments do |as|%>
+                  <%= as.label :role_id, :role_id,style: "display: block" %>
+                  <%=as.collection_select(:role_id,Role.all,:id,:id)%>
+                <% end %>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="col-lg-7">
                 <%= form.submit "Potvrď zmeny", class: "btn btn-danger" %>
         <% end %>
         </div>

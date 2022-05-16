@@ -4,6 +4,7 @@ class User < ApplicationRecord
   has_secure_password
   has_many :comentars, dependent: :destroy
   has_many :assignments
+  accepts_nested_attributes_for :assignments
   has_many :roles, through: :assignments
   validates :name, presence: true
   validates :age, presence: true

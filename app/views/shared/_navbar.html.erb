@@ -41,6 +41,11 @@
             <%= button_to "Prihlásenie", sign_in_path, method: :get, class: "btn btn-outline-secondary" %>
           </li>
         <% end %>
+        <% if session[:user_id].nil? %>
+          <li class="nav-item">
+            <%= button_to "Editovanie práv", index_roles_path, method: :get, class: "btn btn-outline-secondary" %>
+          </li>
+        <% end %>
       </ul>
     </div>
   </div>
