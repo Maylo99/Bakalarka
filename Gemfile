@@ -74,3 +74,6 @@ gem 'pundit', '~> 2.1', '>= 2.1.1'
 gem 'cssbundling-rails'
 gem 'jsbundling-rails'
 gem "font-awesome-rails"
+
+gem 'chartkick'
+gem 'groupdate', '~> 6.1'
