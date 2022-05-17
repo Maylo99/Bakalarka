@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   resources :take_answers, :except => :new
   get 'do_test', to: 'take_test#new'
   get 'my_tests', to: 'take_tests#show_my_tests'
+  get 'test_result', to: 'take_tests#test_results'
   resources :take_tests
   resources :choices
   resources :multiple_choice_questions

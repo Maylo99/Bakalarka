@@ -1,10 +1,55 @@
 <p style="color: green"><%= notice %></p>
+<% t = Test.find_by(id: @take_test.test_id) %>
 
-<%= render @take_test %>
+<h5 class="text-center"><%= t.title %></h5>
+<div class="container text-white">
+
+  <% @take_test.take_answers.each do |oq| %>
+    <div class="row  d-flex justify-content-center ">
+      <div class="col-lg-6 text-center  border  mb-1 bg-dark">
+        <% q = OpenQuestion.find_by(id: oq.question_id) %>
+        <p class="fw-bold"><%= q.question %></p>
+        <p class="fw-bold bg-success">Správna odpoveď: <%= q.correctAnswer %></p>
+        <p class="fw-bold bg-warning">Tvoja odpoveď: <%= oq.user_answer %> </p>
+      </div>
+    </div>
+  <% end %>
+
+  <% t.multiple_choice_questions.each do |tmq| %>
+  <div class="row  d-flex justify-content-center ">
+    <div class="col-lg-6 text-center  border bg-dark  mb-1">
+    <p class="fw-bold"> <%= tmq.question %></p>
+    <% tmq.choices.each do |ch| %>
+      <% if ch.is_true %>
+        <p class="bg-success fw-bold"> <%= ch.answer %> </p>
+      <%else %>
+        <p class="bg-danger fw-bold"> <%= ch.answer %> </p>
+      <% end %>
+
+    <% end %>
+
+    <% @take_test.take_multiple_choices.each do |mq| %>
+      <p class="fw-bold bg-warning">
+        <% if mq.choice.to_i != 0 and mq.question_id == tmq.id %>
+          <% ch = Choice.find_by(id: mq.choice.to_i) %>
+          Tvoja odpoveď: <%= ch.answer %>
+        <% end %>
+      </p>
+    <% end %>
+    </div>
+  </div>
+
+<% end %>
+
+
+</div>
+
+
+
+
+
+
 
 <div>
-  <%= link_to "Edit this take test", edit_take_test_path(@take_test) %> |
   <%= link_to "Back to take tests", take_tests_path %>
-
-  <%= button_to "Destroy this take test", @take_test, method: :delete %>
 </div>

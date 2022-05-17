@@ -10,7 +10,7 @@ class TakeTestsController < ApplicationController
 
   # GET /take_tests/1 or /take_tests/1.json
   def show
-
+    # @test=Test.find_by(id: @take_test.test_id)
   end
 
   # GET /take_tests/new
@@ -87,6 +87,10 @@ class TakeTestsController < ApplicationController
     end
   end
 
+  def test_results
+
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_take_test
@@ -97,6 +101,6 @@ class TakeTestsController < ApplicationController
     def take_test_params
       params.require(:take_test).permit(:gets_points, :user_id, :test_id,
                                         take_answers_attributes: [:user_answer, :question_id],
-                                        take_multiple_choices_attributes: [:choice, :is_correct,:choice_id])
+                                        take_multiple_choices_attributes: [:choice, :is_correct,:choice_id,:question_id])
     end
 end

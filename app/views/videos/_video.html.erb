@@ -1,12 +1,38 @@
-<div id="<%= dom_id video %>">
-  <p>
-    <strong>Title:</strong>
-    <%= video.title %>
-  </p>
-
-  <p>
-    <strong>Description:</strong>
-    <%= video.description %>
-  </p>
-
+<div class="col-12 col-md-6 col-lg-4 card-text-center mt-2 mb-2">
+  <div class="card bg-dark text-light">
+    <div class="card-body text-center">
+      <h3 class="card-title"> <%= video.title %></h3>
+      <div class="card-text">
+        <p><%= video.description %></p>
+      </div>
+      <div class="card-footer">
+        <% @videoshow = Video.find_by(id: video.id) %>
+        <%= link_to "Pozrieť kapitolu " + video.title, video_path(@videoshow),class:  'btn btn-outline-light btn-danger btn-text-light text-uppercase mb-1' %>
+      </div>
+    </div>
+  </div>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<div id="<%#= dom_id video %>">-->
+<!--  <p>-->
+<!--    <strong>Title:</strong>-->
+<%#= video.title %>
+<!--  </p>-->
+
+<!--  <p>-->
+<!--    <strong>Description:</strong>-->
+<%#= video.description %>
+<!--  </p>-->
+
+<!--</div>-->

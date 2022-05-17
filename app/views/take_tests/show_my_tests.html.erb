@@ -1,4 +1,14 @@
-<%@take_tests.each do |t| %>
-  <%= render t %>
-  <%= button_to "Destroy this courses", t, method: :delete%>
-<% end %>
+<div class="container" >
+  <div class="col-12">
+    <div class="row" >
+      <%@take_tests.each do |t| %>
+        <div class="class=col-12 col-md-6 col-lg-4 card-text-center mt-5 mb-5">
+          <div class="card bg-dark text-center text-danger">
+            <%= render t %>
+            <%= button_to "Zobraz test", take_test_path(t),method: :get, class: 'btn-warning btn-outline-secondary mb-3' %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

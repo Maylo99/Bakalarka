@@ -1,17 +1,10 @@
 <div id="<%= dom_id take_test %>">
-  <p>
-    <strong>Gets points:</strong>
-    <%= take_test.gets_points %>
-  </p>
-
-  <p>
-    <strong>User:</strong>
-    <%= take_test.user_id %>
-  </p>
-
-  <p>
-    <strong>Test:</strong>
-    <%= take_test.test_id %>
-  </p>
-
+  <div class="card-body">
+    <%t=Test.find_by(id: take_test.test_id)%>
+    <h5 class="card-title"><%= t.title %></h5>
+    <p class="card-text"> Získane body: <%= take_test.gets_points %></p>
+    <p class="card-footer"> Vypracované: <%= take_test.created_at.to_date %></p>
+  </div>
 </div>
+
+

@@ -1,12 +1,10 @@
 <p style="color: green"><%= notice %></p>
-<h1 class="text-centere">Zoznam všetkých testov</h1>
-<div class="m-5 rounded-3">
-  <section class="p-0">
-    <div id="tests" class="container">
-      <% @tests.each do |test| %>
-          <%= render test %>
-      <% end %>
-    </div>
-  </section>
+<h1 class="text-center mb-5">Zoznam všetkých testov</h1>
+<div id="tests" class="container">
+  <div class="row text-center ">
+    <% @tests.each do |test| %>
+      <%= render test %>
+    <% end %>
+  </div>
+  <%= link_to "Vytvor nový test", new_test_path,class: 'btn btn-outline-light btn-danger btn-text-light text-uppercase '  %>
 </div>
-<%= link_to "Vytvor nový test", new_test_path,class: 'btn btn-outline-light btn-danger btn-text-light text-uppercase '  %>
