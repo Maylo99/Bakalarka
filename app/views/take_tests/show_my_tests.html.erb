@@ -1,11 +1,12 @@
-<div class="container" >
+<h1 class="text-center">Vypracované testy</h1>
+<div class="container mb-5" >
   <div class="col-12">
     <div class="row" >
       <%@take_tests.each do |t| %>
-        <div class="class=col-12 col-md-6 col-lg-4 card-text-center mt-5 mb-5">
+        <div class="class=col-12 col-md-6 col-lg-4 card-text-center mt-5">
           <div class="card bg-dark text-center text-danger">
             <%= render t %>
-            <%= button_to "Zobraz test", take_test_path(t),method: :get, class: 'btn-warning btn-outline-secondary mb-3' %>
+            <%= button_to "Zobraz test", take_test_path(t),method: :get, class: ' btn btn-outline-light btn-danger btn-text-light text-uppercase mb-3'  %>
           </div>
         </div>
       <% end %>
