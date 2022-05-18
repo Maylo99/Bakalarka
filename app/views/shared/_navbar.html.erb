@@ -30,7 +30,7 @@
         <% end %>
         <% if !session[:user_id].nil? %>
           <li class="nav-item">
-            <%= link_to "Logout", logout_path, method: :delete, class: "nav-link active text-warning navbar-brand" %>
+            <%= button_to "Logout", logout_path, method: :delete, class: "nav-link active text-warning navbar-brand" %>
           </li>
         <% end %>
         <% if !session[:user_id].nil? and policy(:video).new? %>
