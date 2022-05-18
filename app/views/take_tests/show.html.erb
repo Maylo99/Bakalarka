@@ -9,12 +9,11 @@
       <div class="col-lg-6 text-center  border  mb-1 bg-dark">
         <% q = OpenQuestion.find_by(id: oq.question_id) %>
         <p class="fw-bold"><%= q.question %></p>
-        <p class="fw-bold bg-success">Správna odpoveď: <%= q.correctAnswer %></p>
+        <p class="fw-bold border border-success">Správna odpoveď: <%= q.correctAnswer %></p>
         <p class="fw-bold bg-warning">Tvoja odpoveď: <%= oq.user_answer %> </p>
       </div>
     </div>
   <% end %>
-
   <% t.multiple_choice_questions.each do |tmq| %>
   <div class="row  d-flex justify-content-center ">
     <div class="col-lg-6 text-center  border bg-dark  mb-1">

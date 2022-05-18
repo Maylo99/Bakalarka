@@ -10,32 +10,39 @@
         <% if session[:user_id].nil? and policy(:video).new? %>
           <h5> Ak nie si registrovaný stačí pár klikov a budeš mať prístup k nadupaným kurzom!!
             Registračný formulár nájdeš  <%= link_to "TU!", sign_up_path, class: "link-danger" %></h5>
-          <%end %>
+        <% end %>
 
       </div>
       <%= image_tag("logo.png", class: 'img-fluid w-25 rounded d-none d-sm-block') %>
     </div>
   </div>
 </section>
-<!--<div class="bg-light">-->
-<!--  <a>ahoj</a>-->
-  <%#=fa_icon("user-circle")   %>
-<!--</div>-->
+<div class="bg-light">
+  <a>ahoj</a>
+  <i class="fa fa-camera-retro"></i>
+  <i class="fa fa-spinner fa-spin fa-lg"></i>
+<%=fa_icon("user-circle")   %>
+</div>
 <div class="container" id="courses">
   <div class="col-6">
-    <div class="row " >
+    <div class="row ">
       <% @courses.each do |course| %>
         <div class="class=col-12 col-md-6 col-lg-4 card-text-center mt-5 mb-5">
           <div class="card bg-dark text-center ">
             <%= render course %>
-            <%= button_to "Zobraz kurz", course_path(course),method: :get, class: ' btn btn-outline-light btn-danger btn-text-light text-uppercase mb-3' %>
+            <% if !session[:user_id].nil? %>
+              <% is_reg = CourseRegister.where("course_id=:course and user_id=:user", { user: session[:user_id], course: course.id }) %>
+              <% if !is_reg.empty? %>
+                <%= button_to "Zobraz kurz", course_path(course), method: :get, class: ' btn btn-outline-light btn-danger btn-text-light text-uppercase mb-3' %>
+              <% else %>
+                <%= button_to "Zápis do kurzu", course_path(course), method: :get, class: ' btn btn-outline-light btn-danger btn-text-light text-uppercase mb-3' %>
+              <% end %>
+            <% end %>
           </div>
-
         </div>
       <% end %>
     </div>
   </div>
   <div class="col-6">
-
   </div>
 </div>

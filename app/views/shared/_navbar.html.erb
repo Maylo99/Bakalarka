@@ -2,43 +2,45 @@
   <div class="container-fluid ">
     <link rel="icon" href=".app/assets/images/logo.png" type="image/x-icon">
     <%= link_to(image_tag("logo.png", :size => "100x37", class: 'rounded'), root_path, alt: "logo") %>
-    <%= button_to "Domov", root_path, :method => "get", class: "btn btn-outline-secondary" %>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse  " id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <%= link_to "Domov", root_path, :method => "get", class: "nav-link active text-warning navbar-brand" %>
+        </li>
         <% if !session[:user_id].nil? and policy(:video).new? %>
           <li class="nav-item">
-            <%= button_to "Testy", tests_path, :method => "get", class: "btn btn-outline-secondary" %>
+            <%= link_to "Testy", tests_path, :method => "get", class: "nav-link active text-warning navbar-brand " %>
           </li>
         <% end %>
         <li class="nav-item">
-          <%= button_to "Kurzy", courses_path, :method => "get", class: "btn btn-outline-secondary" %>
+          <%= link_to "Kurzy", courses_path, :method => "get", class: "nav-link active text-warning navbar-brand" %>
         </li>
         <% if !session[:user_id].nil? %>
           <li class="nav-item">
-            <%= button_to "Moje testy", take_tests_path, :method => "get", class: "btn btn-outline-secondary" %>
+            <%= link_to "Moje testy", take_tests_path, :method => "get", class: "nav-link active text-warning navbar-brand" %>
           </li>
         <% end %>
         <% if !session[:user_id].nil? %>
           <li class="nav-item">
-            <%= button_to "Môj profil", update_user_path, method: :get, class: "btn btn-outline-secondary " %>
+            <%= link_to "Môj profil", update_user_path, method: :get, class: "nav-link active text-warning navbar-brand" %>
           </li>
         <% end %>
         <% if !session[:user_id].nil? %>
           <li class="nav-item">
-            <%= button_to "Logout", logout_path, method: :delete, class: "btn btn-outline-secondary" %>
+            <%= link_to "Logout", logout_path, method: :delete, class: "nav-link active text-warning navbar-brand" %>
           </li>
         <% end %>
         <% if !session[:user_id].nil? and policy(:video).new? %>
           <li class="nav-item">
-            <%= button_to "Pridaj video", new_video_path, method: :get, class: "btn btn-outline-secondary" %>
+            <%= link_to "Pridaj video", new_video_path, method: :get, class: "nav-link active text-warning navbar-brand" %>
           </li>
         <% end %>
         <% if session[:user_id].nil? %>
           <li class="nav-item">
-            <%= button_to "Prihlásenie", sign_in_path, method: :get, class: "btn btn-outline-secondary" %>
+            <%= link_to "Prihlásenie", sign_in_path, method: :get, class:"nav-link active text-warning navbar-brand" %>
           </li>
         <% end %>
       </ul>

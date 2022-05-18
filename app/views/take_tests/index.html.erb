@@ -4,9 +4,6 @@
   <div class="col-2"></div>
   <div class="col-8">
     <div class="row ">
-      <%if @tests.nil?%>
-          <h5>Všetky dostupné testy si vypracoval!</h5>
-        <%end %>
       <% @tests.each do |test| %>
         <% take_test = TakeTest.where(["user_id =:user and test_id=:test", { user: session[:user_id], test: test.id }]) %>
         <% if take_test.first.nil? %>
