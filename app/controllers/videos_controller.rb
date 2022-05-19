@@ -17,7 +17,7 @@ class VideosController < ApplicationController
 
   # GET /videos/1/edit
   def edit
-    @video=Video.find_by(params[:id])
+    @video=Video.find_by(id:params[:id])
     authorize @video
   end
 

@@ -1,25 +1,43 @@
 <p style="color: green"><%= notice %></p>
-<h1 class="text-center">Testy na vypracovanie</h1>
-<div class="container" id="courses">
-  <div class="col-2"></div>
-  <div class="col-8">
-    <div class="row ">
-      <% @tests.each do |test| %>
-        <% take_test = TakeTest.where(["user_id =:user and test_id=:test", { user: session[:user_id], test: test.id }]) %>
-        <% if take_test.first.nil? %>
-          <div class="class=col-12 col-md-6 col-lg-4 card-text-center mt-5 mb-5">
-            <div class="card bg-dark text-center text-danger">
-              <div class="card-body">
-                <h5 class="card-title"><%= test.title %></h5>
-                <p class="card-text">Počet bodov:<%= test.totalPoints %></p>
+<div class="container mb-3" id="courses">
+  <h1 class="text-center text-dark fw-bold">Testy</h1>
+  <div class="row">
+    <div class="col-6">
+      <h2 class="text-center fw-bold text-warning">Nevypracované testy</h2>
+      <div class="row">
+        <% my_tests = TakeTest.where(["user_id =:user", { user: session[:user_id] }]) %>
+        <% if my_tests.length == Test.all.length %>
+          <h3 class="fw-bold text-light text-lg-center mt-5 ">Momentálne nie sú dostupné žiadne ďalšie testy na
+            vypracovanie, keďže si už všetky testy vypracoval!</h3>
+        <% end %>
+        <% @tests.each do |test| %>
+          <% take_test = TakeTest.where(["user_id =:user and test_id=:test", { user: session[:user_id], test: test.id }]) %>
+          <% if take_test.first.nil? %>
+            <div class="class=col-12 col-md-6 col-lg-4 card-text-center mt-5 ">
+              <div class="card bg-dark text-center text-danger">
+                <div class="card-body">
+                  <h5 class="card-title text-warning"><%= test.title %></h5>
+                  <p class="card-text text-light">Počet bodov:<%= test.totalPoints %></p>
+                </div>
+                <%= link_to "Vypracovať test", new_take_test_path(:test_id => test.id), class: ' btn btn-outline-light btn-danger btn-text-light text-uppercase mb-3' %>
               </div>
-              <%= link_to "Vypracovať test", new_take_test_path(:test_id => test.id) %>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-6">
+      <h2 class="text-center text-warning fw-bold">Vypracované testy</h2>
+      <div class="row">
+        <% @take_tests.each do |t| %>
+          <div class="class=col-12 col-md-6 col-lg-4 card-text-center mt-5">
+            <div class="card bg-dark text-center text-danger">
+              <%= render t %>
+              <%= button_to "Zobraz test", take_test_path(t), method: :get, class: ' btn btn-outline-light btn-danger btn-text-light text-uppercase mb-3' %>
             </div>
           </div>
         <% end %>
-      <% end %>
+      </div>
     </div>
-    <div class="col-2"></div>
   </div>
 </div>
-<%= link_to "Vypracované testy", my_tests_path %>

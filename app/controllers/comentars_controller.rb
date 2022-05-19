@@ -20,7 +20,7 @@ class ComentarsController < ApplicationController
     end
   end
   def edit
-    @comentar=Comentar.find_by(params[:id])
+    @comentar=Comentar.find_by(id: params[:id])
   end
 
   def update

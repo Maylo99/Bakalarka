@@ -1,24 +1,23 @@
 <p style="color: green"><%= notice %></p>
-
 <h1 class="text-center text-dark ">Kurzy</h1>
 <div class="container" id="courses">
-  <div class="row " >
+  <div class="row ">
     <% @courses.each do |course| %>
-    <div class="class=col-12 col-md-6 col-lg-4 card-text-center mt-5 card-text-center ">
-      <div class="card bg-dark text-center text-danger">
-        <%= render course %>
-        <% is_reg = CourseRegister.where("course_id=:course and user_id=:user", { user: session[:user_id], course: course.id }) %>
-        <% if !is_reg.empty? %>
-          <%= button_to "Zobraz kurz", course_path(course), method: :get, class: ' btn btn-outline-light btn-danger btn-text-light text-uppercase mb-3' %>
-        <%else %>
-          <%= button_to "Zápis do kurzu", course_path(course), method: :get, class: ' btn btn-outline-light btn-danger btn-text-light text-uppercase mb-3' %>
-        <% end %>
+      <div class="class=col-12 col-md-6 col-lg-4 card-text-center mt-5 card-text-center ">
+        <div class="card bg-dark text-center text-danger">
+          <%= render course %>
+          <% is_reg = CourseRegister.where("course_id=:course and user_id=:user", { user: session[:user_id], course: course.id }) %>
+          <% if !is_reg.empty? %>
+            <%= button_to "Zobraz kurz", course_path(course), method: :get, class: ' btn btn-outline-light btn-danger btn-text-light text-uppercase mb-3' %>
+          <% else %>
+            <%= button_to "Zápis do kurzu", course_path(course), method: :get, class: ' btn btn-outline-light btn-danger btn-text-light text-uppercase mb-3' %>
+          <% end %>
+        </div>
       </div>
-    </div>
     <% end %>
   </div>
 </div>
-</div>
 <% if policy(@courses).new? %>
-  <%= link_to "New courses", new_course_path %>
+  <a><%= link_to "New courses", new_course_path, class: "nav-link active text-warning  text-decoration-underline h-100 w-auto" %></a>
 <% end %>
+</div>

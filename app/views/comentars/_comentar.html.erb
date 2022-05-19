@@ -2,14 +2,14 @@
   <div class="row text-dartk">
     <div class="col-sm-8 col-md-9 col-lg-8 bg-opacity-75 bg-light border border-dark rounded">
       <%= link_to fa_icon("times-circle"), video_comentar_url(:id => comentar.id, :video_id => comentar.video_id),method: "delete", style: style = 'color:red !important;' %>
-      <small class="text-warning">  <%= fa_icon "calendar" %> <%= comentar.created_at.to_date %></small>
+      <small class="text-warning">  Dátum: <%= comentar.created_at.to_date %></small>
         <br>
         <div>
-          <strong class="text-dark"> <%= fa_icon "user-circle" %><%= comentar.user.name %></strong></div>
+          <strong class="text-dark"><%= comentar.user.name %></strong></div>
         <div>
           <strong><%= comentar.text %></strong>
         </div>
-        <%= link_to fa_icon("pencil"), edit_video_comentar_url(:id => comentar.id, :video_id => comentar.video_id) %>
+        <%= link_to "Edit", edit_video_comentar_url(:id => comentar.id, :video_id => comentar.video_id) %>
     </div>
   </div>
 </div>

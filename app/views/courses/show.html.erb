@@ -22,7 +22,7 @@
 
 <div>
     <%if policy(@course).edit? %>
-  <%= link_to "Edit this courses", edit_course_path(@course) %> |
+  <%= link_to "Edit this courses", edit_course_path(id: @course.id) %> |
     <%end %>
   <%= link_to "Back to courses", courses_path %>
 <%if policy(@course).destroy? %>

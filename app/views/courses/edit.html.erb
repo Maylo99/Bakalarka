@@ -1,10 +1,7 @@
-<h1>Editing course</h1>
-
-<%= render "form", course: @course %>
-
-<br>
-
+<h1 class="text-center">Editácia kurzu</h1>
+<div class="container w-50 mb-5 bg-dark text-white">
+  <%= render "form", course: @courses %>
+</div>
 <div>
-  <%= link_to "Show this courses", @course %> |
   <%= link_to "Back to courses", courses_path %>
 </div>

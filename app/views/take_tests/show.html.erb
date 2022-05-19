@@ -1,54 +1,47 @@
 <p style="color: green"><%= notice %></p>
 <% t = Test.find_by(id: @take_test.test_id) %>
 
-<h5 class="text-center"><%= t.title %></h5>
+<h1 class="text-center fw-bold text-dark"><%= t.title %></h1>
 <div class="container text-white">
 
   <% @take_test.take_answers.each do |oq| %>
     <div class="row  d-flex justify-content-center ">
-      <div class="col-lg-6 text-center  border  mb-1 bg-dark">
+      <div class="col-lg-6   border  mb-1 bg-dark">
         <% q = OpenQuestion.find_by(id: oq.question_id) %>
         <p class="fw-bold"><%= q.question %></p>
-        <p class="fw-bold border border-success">Správna odpoveď: <%= q.correctAnswer %></p>
-        <p class="fw-bold bg-warning">Tvoja odpoveď: <%= oq.user_answer %> </p>
+        <p class="fw-bold bg-success opacity-75">Správna odpoveď: <%= q.correctAnswer %></p>
+        <p class="fw-bold text-light">Tvoja odpoveď: <%= oq.user_answer %> </p>
       </div>
     </div>
   <% end %>
   <% t.multiple_choice_questions.each do |tmq| %>
-  <div class="row  d-flex justify-content-center ">
-    <div class="col-lg-6 text-center  border bg-dark  mb-1">
-    <p class="fw-bold"> <%= tmq.question %></p>
-    <% tmq.choices.each do |ch| %>
-      <% if ch.is_true %>
-        <p class="bg-success fw-bold"> <%= ch.answer %> </p>
-      <%else %>
-        <p class="bg-danger fw-bold"> <%= ch.answer %> </p>
-      <% end %>
-
-    <% end %>
-
-    <% @take_test.take_multiple_choices.each do |mq| %>
-      <p class="fw-bold bg-warning">
-        <% if mq.choice.to_i != 0 and mq.question_id == tmq.id %>
-          <% ch = Choice.find_by(id: mq.choice.to_i) %>
-          Tvoja odpoveď: <%= ch.answer %>
+    <div class="row  d-flex justify-content-center ">
+      <div class="col-lg-6 border bg-dark  mb-1 ">
+        <p class="fw-bold"> <%= tmq.question %></p>
+        <% tmq.choices.each do |ch| %>
+          <% if ch.is_true %>
+            <p class="bg-success opacity-75 fw-bold"> <%= ch.answer %> </p>
+          <% else %>
+            <p class="bg-danger opacity-75 fw-bold"> <%= ch.answer %> </p>
+          <% end %>
         <% end %>
-      </p>
-    <% end %>
+        <p class="fw-bold ">
+          Tvoja odpoveď:
+          <% @take_test.take_multiple_choices.each do |mq| %>
+            <% if mq.choice.to_i != 0 and mq.question_id == tmq.id %>
+              <% ch = TakeMultipleChoice.where("take_test_id=:test and choice_id=:choice", { choice: mq.choice.to_i, test: mq.take_test_id.to_i }) %>
+              <% ch.each do |answers| %>
+                <%= Choice.find_by(id: answers.choice.to_i).answer %>
+              <% end %>
+            <% end %>
+          <% end %>
+        </p>
+
+      </div>
     </div>
-  </div>
-
-<% end %>
-
-
+  <% end %>
 </div>
 
-
-
-
-
-
-
 <div>
-  <%= link_to "Back to take tests", take_tests_path %>
+  <%= link_to "Back to take tests", take_tests_path, class: "nav-link active fw-bold navbar-brand text-decoration-underline text-warning" %>
 </div>

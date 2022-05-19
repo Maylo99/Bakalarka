@@ -18,7 +18,7 @@ class CoursesController < ApplicationController
 
   # GET /courses/1/edit
   def edit
-    @courses = Course.find(params[:id])
+    @courses = Course.find_by(id: params[:id])
     authorize @courses
   end
 

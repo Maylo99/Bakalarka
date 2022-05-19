@@ -51,7 +51,7 @@
       <%= render partial: 'comentars/form', locals: { video: @video } %>
       <div class="row">
         <% if policy(@video).edit? %>
-          <%= link_to "Edit this video", edit_video_path(@video) %>
+          <%= link_to "Edit this video", edit_video_path(@video.id) %>
         <% end %>
 
         <% if policy(@video).destroy? %>

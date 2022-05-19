@@ -5,7 +5,7 @@ class TakeTestsController < ApplicationController
   # GET /take_tests or /take_tests.json
   def index
     @tests = Test.all
-
+    @take_tests=TakeTest.where(user_id: session[:user_id])
   end
 
   # GET /take_tests/1 or /take_tests/1.json
