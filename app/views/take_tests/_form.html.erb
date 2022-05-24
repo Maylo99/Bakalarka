@@ -2,7 +2,6 @@
   <% if @take_test.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(@take_test.errors.count, "error") %> prohibited this take_test from being saved:</h2>
-
       <ul>
         <% @take_test.errors.each do |error| %>
           <li><%= error.full_message %></li>
@@ -10,38 +9,35 @@
       </ul>
     </div>
   <% end %>
-
-  <%= form.hidden_field :user_id, :value => session[:user_id] %>
-  <% @take_test.user_id = User.find_by(id: @take_test.user_id) %>
-  <div class="field">
-    <% test = Test.find_by(id: @take_test.test_id) %>
+  <% test = Test.find_by(id: @take_test.test_id) %>
+  <h2 class="text-center mt-5">Vypracovanie testu <%= test.title %></h2>
+  <div class="container m-3 text-dark fw-bold fs-4 mt-4 w-50">
+    <%= form.hidden_field :user_id, :value => session[:user_id] %>
+    <% @take_test.user_id = User.find_by(id: @take_test.user_id) %>
     <% test.open_questions.each do |q| %>
       <%= form.fields_for :take_answers do |builder| %>
-        <div>
+        <div class="row">
           <%= q.question %>
-          <%= builder.label :Odpoveď %>
-          <%= builder.text_field :user_answer %>
+          <%= builder.text_field :user_answer,class:"form-control" %>
           <%= builder.hidden_field :question_id, :value => q.id.to_i %>
         </div>
       <% end %>
     <% end %>
-  </div>
-  <div class="field">
     <% test.multiple_choice_questions.each do |m| %>
+      <div class="row">
       <%= m.question %>
       <% m.choices.each do |ch| %>
         <%= form.fields_for :take_multiple_choices do |builder| %>
-          <div>
-            <%= builder.check_box :choice,{multiple: false }, ch.id %><%=ch.answer %>
-            <%=builder.hidden_field :is_correct, :value =>ch.is_true %>
-            <%=builder.hidden_field :choice_id, :value =>ch.id %>
-            <%=builder.hidden_field :question_id, :value =>m.id %>
-          </div>
+            <div>
+              <%= builder.check_box :choice, { multiple: false }, ch.id %><%= ch.answer %>
+              <%= builder.hidden_field :is_correct, :value => ch.is_true %>
+              <%= builder.hidden_field :choice_id, :value => ch.id %>
+              <%= builder.hidden_field :question_id, :value => m.id %>
+            </div>
         <% end %>
       <% end %>
+      </div>
     <% end %>
   </div>
-  <div>
-    <%= form.submit "Odovzdať test!"%>
-  </div>
+  <%= form.submit "Odovzdať test!",class: "btn btn-danger"%>
 <% end %>

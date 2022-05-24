@@ -1,46 +1,49 @@
-<%last_courses=Course.last(3) %>
+<% last_courses = Course.last(3) %>
 <footer class="bg-dark text-white  mt-auto pt-5 pb-4">
   <div class="container text-center text-md-left">
     <div class="row text-center text-md-left">
       <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
         <h5 class="text-uppercase mb-4 fw-bold text-danger">learnit</h5>
-        <p class="text-white fw-bold">Tento projekt vznikol ako výsledny produkt bakalárskej práce, ktorá bola zameraná na vytvorenie webovej aplikácie
+        <p class="text-white fw-bold">Tento projekt vznikol ako výsledny produkt bakalárskej práce, ktorá bola zameraná
+          na vytvorenie webovej aplikácie
           pre podporu elektronickej výučby.</p>
       </div>
-      <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
-        <h5 class="text-uppercase mb-4 fw-bold text-warning">Najnovšie kurzy</h5>
-<!--        <p>-->
-          <%#= link_to last_courses.first.title, course_path(last_courses.first), method: :get,class: "nav-link active text-light navbar-brand" %>
-<!--        </p>-->
-<!--        <p>-->
-          <%#= link_to last_courses.second.title, course_path(last_courses.second), method: :get,class: "nav-link active text-light navbar-brand" %>
-<!--        </p>-->
-<!--        <p>-->
-          <%#= link_to last_courses.last.title, course_path(last_courses.last), method: :get,class: "nav-link active text-light navbar-brand" %>
-<!--        </p>-->
-      </div>
-      <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
-        <h5 class="text-uppercase mb-4 fw-bold text-warning">Užitočné odkazy</h5>
-        <p>
-          <%= link_to "Moje testy", take_tests_path, :method => "get", class: "nav-link active text-light navbar-brand" %>
-        </p>
-        <p>
-          <%= link_to "Môj profil", update_user_path, method: :get, class: "nav-link active text-light navbar-brand" %>
-        </p>
-        <p>
-          <%= link_to "Kurzy", courses_path, :method => "get", class: "nav-link active text-light navbar-brand" %>
-        </p>
-      </div>
+      <% if !session[:user_id].nil? %>
+        <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+          <h5 class="text-uppercase mb-4 fw-bold text-warning">Najnovšie kurzy</h5>
+          <p>
+            <%= link_to last_courses.first.title, course_path(last_courses.first), method: :get, class: "nav-link active text-light navbar-brand" %>
+          </p>
+          <p>
+            <%= link_to last_courses.second.title, course_path(last_courses.second), method: :get, class: "nav-link active text-light navbar-brand" %>
+          </p>
+          <p>
+            <%= link_to last_courses.last.title, course_path(last_courses.last), method: :get, class: "nav-link active text-light navbar-brand" %>
+          </p>
+        </div>
+        <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
+          <h5 class="text-uppercase mb-4 fw-bold text-warning">Užitočné odkazy</h5>
+          <p>
+            <%= link_to "Moje testy", take_tests_path, :method => "get", class: "nav-link active text-light navbar-brand" %>
+          </p>
+          <p>
+            <%= link_to "Môj profil", update_user_path, method: :get, class: "nav-link active text-light navbar-brand" %>
+          </p>
+          <p>
+            <%= link_to "Kurzy", courses_path, :method => "get", class: "nav-link active text-light navbar-brand" %>
+          </p>
+        </div>
+      <% end %>
       <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
         <h5 class="text-uppercase mb-4 fw-bold text-warning">Kontaktné údaje</h5>
         <p>
           <i class="mr-3"></i>Bratislava, Mlyny 841 04
         </p>
         <p>
-        <i class="mr-3"></i>hajek.michal56@gmail.com
+          <i class="mr-3"></i>hajek.michal56@gmail.com
         </p>
         <p>
-        <i class="mr-3"></i>+421 911 964 196
+          <i class="mr-3"></i>+421 911 964 196
         </p>
       </div>
     </div>

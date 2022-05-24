@@ -7,8 +7,11 @@
       </div>
       <div class="card-footer">
         <% @test = Test.find_by(id: test.id) %>
-        <%= link_to "Uprav test", edit_test_path(@test), class: 'btn btn-outline-light btn-danger btn-text-light text-uppercase mb-1' %>
-        <%= link_to "Vymaž test", test, method: :delete, class: 'btn btn-outline-light btn-danger btn-text-light text-uppercase mb-1' %>
+        <div class="btn-group" role="group" aria-label="Basic example">
+          <%= link_to "Uprav test", edit_test_path(@test), class: 'btn btn-outline-light btn-danger btn-text-light text-uppercase mb-1' %>
+          <%= button_to "Vymaž test", @test, method: :delete, class: 'btn btn-outline-light btn-danger btn-text-light text-uppercase mb-1'  %>
+        </div>
+
       </div>
     </div>
   </div>

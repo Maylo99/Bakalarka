@@ -7,7 +7,7 @@
         <h3>
           Rozšírte svoje znalosti v rôznych oblastiach spolu s <span class="text-danger">LearnIT</span>!
         </h3>
-        <% if session[:user_id].nil? and policy(:video).new? %>
+        <% if session[:user_id].nil? %>
           <h5> Ak nie si registrovaný stačí pár klikov a budeš mať prístup k nadupaným kurzom!!
             Registračný formulár nájdeš  <%= link_to "TU!", sign_up_path, class: "link-danger" %></h5>
         <% end %>

@@ -7,25 +7,22 @@
 
 <div class="container">
   <div class="row text-center">
-
     <%@course.videos.each do |video|%>
       <%=render video %>
-
     <%end %>
-
   </div>
-
-</div>
-
-
-
-
-<div>
+  <div class="btn-group" role="group" aria-label="Basic example">
+    <%= link_to "Back to courses", courses_path,class: 'btn btn-outline-light btn-info btn-text-light text-uppercase mb-3' %>
     <%if policy(@course).edit? %>
-  <%= link_to "Edit this courses", edit_course_path(id: @course.id) %> |
+      <%= link_to "Edit this courses", edit_course_path(id: @course.id),class: 'btn btn-outline-light btn-warning btn-text-light text-uppercase mb-3' %> |
     <%end %>
-  <%= link_to "Back to courses", courses_path %>
-<%if policy(@course).destroy? %>
-  <%= button_to "Destroy this courses", @course, method: :delete %>
-  <%end %>
+    <%if policy(@course).destroy? %>
+      <%= button_to "Destroy this courses", @course, method: :delete,class: 'btn btn-outline-light btn-danger btn-text-light text-uppercase mb-3' %>
+    <%end %>
+  </div>
 </div>
+
+
+
+
+

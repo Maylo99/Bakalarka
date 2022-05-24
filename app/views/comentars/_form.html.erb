@@ -1,7 +1,8 @@
-<div class="bg-opacity-75 bg-dark border rounded">
-  <%= form_with url: video_comentars_path(video) do |form| %>
-    <%= form.label :Pridaj_komentár, style: "display: block" %>
-    <%= form.text_area :text %>
-    <%= form.submit %>
+<div class="bg-opacity-75 bg-dark border rounded text-warning fw-bold fs-3 text-center">
+  <%= form_with url: comentars_path(video) do |form| %>
+    <%= form.label :Pridaj_komentár, style: "display: block",class: "form-label" %>
+    <%= form.text_area :text,class:"form-control" %>
+    <%=form.hidden_field :video_id, value: video.id %>
+    <%= form.submit class: "btn btn-success" %>
   <% end %>
 </div>

@@ -1,15 +1,19 @@
 <div id="<%= dom_id comentar %>">
   <div class="row text-dartk">
     <div class="col-sm-8 col-md-9 col-lg-8 bg-opacity-75 bg-light border border-dark rounded">
-      <%= link_to fa_icon("times-circle"), video_comentar_url(:id => comentar.id, :video_id => comentar.video_id),method: "delete", style: style = 'color:red !important;' %>
-      <small class="text-warning">  Dátum: <%= comentar.created_at.to_date %></small>
-        <br>
-        <div>
-          <strong class="text-dark"><%= comentar.user.name %></strong></div>
-        <div>
-          <strong><%= comentar.text %></strong>
+      <small class="text-danger fw-bold"> Dátum: <%= comentar.created_at.to_date %></small>
+      <br>
+      <div>
+        <strong class="text-dark"><%= comentar.user.name %></strong></div>
+      <div>
+        <strong><%= comentar.text %></strong>
+      </div>
+      <div class="btn-group" role="group" aria-label="Basic example">
+        <%if session[:user_id]==comentar.user_id or policy(@video).destroy?  %>
+          <%= link_to "Edit", edit_comentar_url(:id => comentar.id), class: "btn btn-info" %>
+          <%= button_to "Zmaž", comentar, method: :delete, class: "btn btn-danger" %>
+      <%end %>
         </div>
-        <%= link_to "Edit", edit_video_comentar_url(:id => comentar.id, :video_id => comentar.video_id) %>
     </div>
   </div>
 </div>
