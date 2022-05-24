@@ -9,9 +9,10 @@ Rails.application.routes.draw do
   resources :open_questions
   resources :tests
   resources :videos do
-    resources :comentars, only: [:create, :destroy, :edit]
-    put 'comentars/:id/edit', to: 'comentars#update'
+
   end
+  resources :comentars, only: [:create, :destroy, :edit]
+  put 'comentars/:id/edit', to: 'comentars#update'
   resources :courses
   get 'sign_up', to: 'registrations#new'
   post 'sign_up', to: 'registrations#create'
