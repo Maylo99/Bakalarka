@@ -4,13 +4,18 @@ class TakeTestsController < ApplicationController
 
   # GET /take_tests or /take_tests.json
   def index
+    if session[:user_id].nil?
+      redirect_to root_path, notice: "Pre túto akciu musíš byť prihlásený!"
+    end
     @tests = Test.all
     @take_tests=TakeTest.where(user_id: session[:user_id])
   end
 
   # GET /take_tests/1 or /take_tests/1.json
   def show
-    # @test=Test.find_by(id: @take_test.test_id)
+    if session[:user_id].nil?
+      redirect_to root_path, notice: "Pre túto akciu musíš byť prihlásený!"
+    end
   end
 
   # GET /take_tests/new

@@ -1,13 +1,18 @@
 class CoursesController < ApplicationController
-  before_action  only: %i[ show edit update destroy ]
+  before_action only: %i[ show edit update destroy ]
 
   # GET /courses or /courses.json
   def index
     @courses = Course.all
   end
-    # GET /courses/1 or /courses/1.json
+
+  # GET /courses/1 or /courses/1.json
   def show
     @course = Course.find(params[:id])
+    c = CourseRegistration.where("course_id=:course and user_id=:user", { user: session[:user_id], course: params[:id] })
+    if c.empty?
+      redirect_to root_path, notice: "Nie si prihláseny do kurzu"
+    end
   end
 
   # GET /courses/new
@@ -52,17 +57,17 @@ class CoursesController < ApplicationController
   end
 
   def registration
-    c=CourseRegistration.new(user_id: session[:user_id],course_id: params[:course_id])
+    c = CourseRegistration.new(user_id: session[:user_id], course_id: params[:course_id])
     if c.save
-      redirect_to course_path(Course.find_by(id: params[:course_id])),notice: "Prihlásil si sa do kurzu!"
+      redirect_to course_path(Course.find_by(id: params[:course_id])), notice: "Prihlásil si sa do kurzu!"
     end
   end
 
   # DELETE /courses/1 or /courses/1.json
   def destroy
+    @course=Course.find_by(id: params[:id])
     @course.destroy
     authorize @course
-
     respond_to do |format|
       format.html { redirect_to courses_url, notice: "Course was successfully destroyed." }
       format.json { head :no_content }
@@ -70,15 +75,15 @@ class CoursesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_course
-      @course = Course.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def course_params
-      params.require(:course).permit(:title, :description)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_course
+    @course = Course.find(params[:id])
+  end
 
+  # Only allow a list of trusted parameters through.
+  def course_params
+    params.require(:course).permit(:title, :description)
+  end
 
 end

@@ -4,6 +4,9 @@ class  TestsController < ApplicationController
   # GET /tests or /tests.json
   def index
     @tests = Test.all
+    if session[:user_id].nil?
+      redirect_to root_path, notice: "Pre túto akciu musíš byť prihlásený!"
+    end
   end
 
   # GET /tests/1 or /tests/1.json

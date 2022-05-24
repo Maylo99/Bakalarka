@@ -1,18 +1,20 @@
 class ComentarsController < ApplicationController
-  before_action :get_video
+  # before_action :get_video
   before_action :set_comentar,  only: %i[edit,update]
   def create
     user=current_user
     @comentar=user.comentars.new(comentar_params)
+    @video=Video.find_by(id: params[:video_id])
     if @comentar.save
-      redirect_to video_path(params[:video_id])
+      redirect_to video_path(@video)
       else
         flash[:notice]=@comentar.errors.full_messages.to_sentence
     end
   end
 
   def destroy
-    @comentar=Comentar.find_by(params[:id])
+    @comentar=Comentar.find_by(id: params[:id])
+    @video=Video.find_by(id: @comentar.video_id)
     @comentar.destroy
     respond_to do |format|
       format.html { redirect_to video_path(@video), notice: "Komentár bol úspešne zmazaný" }
@@ -21,12 +23,14 @@ class ComentarsController < ApplicationController
   end
   def edit
     @comentar=Comentar.find_by(id: params[:id])
+    @video=Video.find_by(id: @comentar.video_id)
   end
 
   def update
-      @comentar=Comentar.find_by(params[:id])
+      @comentar=Comentar.find_by(id: params[:id])
+      @video=Video.find_by(id: @comentar.video_id)
       respond_to do |format|
-        if @comentar.update(comentar_params)
+        if @comentar.update(text: params[:text])
           format.html { redirect_to video_path(@video), notice: "Comentar was successfully updated." }
           format.json { render :show, status: :ok, location: @comentar }
         else
@@ -47,8 +51,7 @@ class ComentarsController < ApplicationController
     #  # .require(:comentars).
     def comentar_params
       params.
-        permit(:text).
-        merge(video_id: params[:video_id])
+        permit(:text,:video_id)
     end
 
     def get_video

@@ -1,5 +1,8 @@
 class UserController< ApplicationController
   def create
+    if session[:user_id].nil?
+      redirect_to root_path, notice: "Pre túto akciu musíš byť prihlásený!"
+    end
     @user = current_user
   end
   def update

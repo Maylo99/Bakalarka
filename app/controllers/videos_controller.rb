@@ -4,10 +4,18 @@ class VideosController < ApplicationController
   # GET /videos or /videos.json
   def index
     @videos = Video.all
+    if session[:user_id].nil?
+      redirect_to root_path, notice: "Pre túto akciu musíš byť prihlásený!"
+    end
   end
 
   # GET /videos/1 or /videos/1.json
   def show
+    v=Video.find_by(id: params[:id])
+    c = CourseRegistration.where("course_id=:course and user_id=:user", { user: session[:user_id], course: v.course_id })
+    if c.empty?
+      redirect_to root_path, notice: "Nie si prihláseny do kurzu"
+    end
   end
 
   # GET /videos/new
