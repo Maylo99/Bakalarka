@@ -17,12 +17,6 @@
     </div>
   </div>
 </section>
-<div class="bg-light">
-  <a>ahoj</a>
-  <i class="fa fa-camera-retro"></i>
-  <i class="fa fa-spinner fa-spin fa-lg"></i>
-<%=fa_icon("user-circle")   %>
-</div>
 <div class="container" id="courses">
   <div class="col-6">
     <div class="row ">
@@ -31,11 +25,11 @@
           <div class="card bg-dark text-center ">
             <%= render course %>
             <% if !session[:user_id].nil? %>
-              <% is_reg = CourseRegister.where("course_id=:course and user_id=:user", { user: session[:user_id], course: course.id }) %>
+              <% is_reg = CourseRegistration.where("course_id=:course and user_id=:user", { user: session[:user_id], course: course.id }) %>
               <% if !is_reg.empty? %>
                 <%= button_to "Zobraz kurz", course_path(course), method: :get, class: ' btn btn-outline-light btn-danger btn-text-light text-uppercase mb-3' %>
               <% else %>
-                <%= button_to "Zápis do kurzu", course_path(course), method: :get, class: ' btn btn-outline-light btn-danger btn-text-light text-uppercase mb-3' %>
+              <%= button_to "Zápis do kurzu", course_registration_path(course), method: :post,params: {course_id: course.id}, class: ' btn btn-outline-light btn-danger btn-text-light text-uppercase mb-3' %>
               <% end %>
             <% end %>
           </div>

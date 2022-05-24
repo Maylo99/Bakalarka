@@ -51,6 +51,13 @@ class CoursesController < ApplicationController
     end
   end
 
+  def registration
+    c=CourseRegistration.new(user_id: session[:user_id],course_id: params[:course_id])
+    if c.save
+      redirect_to course_path(Course.find_by(id: params[:course_id])),notice: "Prihlásil si sa do kurzu!"
+    end
+  end
+
   # DELETE /courses/1 or /courses/1.json
   def destroy
     @course.destroy
