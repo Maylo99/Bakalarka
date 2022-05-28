@@ -4,13 +4,10 @@
     <div class="row text-center">
       <%= render @test %>
     </div>
+
     </div>
-
-  <div>
-    <%= link_to "Edit this test", edit_test_path(@test) %> |
-    <%= link_to "Back to tests", tests_path %>
-
-
+  <div class="btn-group ml-3" role="group" aria-label="Basic example">
+    <%= link_to "Back to tests", tests_path,class: 'btn btn-outline-light btn-info btn-text-light text-uppercase '  %>
+    <%= link_to "Edit this test", edit_test_path(@test),class: 'btn btn-outline-light btn-warning btn-text-light text-uppercase '  %> |
   </div>
-
 </section>

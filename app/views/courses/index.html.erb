@@ -18,8 +18,9 @@
       </div>
     <% end %>
   </div>
+  <% if policy(@courses).new? %>
+    <%= link_to "Vytvor kurz", new_course_path,class: 'btn btn-outline-light btn-danger btn-text-light text-uppercase ' %>
+  <% end %>
 </div>
 </div>
-<% if policy(@courses).new? %>
-  <%= link_to "New courses", new_course_path %>
-<% end %>
+
