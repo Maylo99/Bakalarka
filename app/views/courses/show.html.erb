@@ -2,7 +2,6 @@
   <h1>
     Kapitoly kurzu <%=@course.title %>
   </h1>
-
 </div>
 
 <div class="container">
@@ -12,12 +11,12 @@
     <%end %>
   </div>
   <div class="btn-group" role="group" aria-label="Basic example">
-    <%= link_to "Back to courses", courses_path,class: 'btn btn-outline-light btn-info btn-text-light text-uppercase mb-3' %>
+    <%= link_to "Naspäť nakurzy", courses_path,class: 'btn btn-outline-light btn-info btn-text-light text-uppercase mb-3' %>
     <%if policy(@course).edit? %>
-      <%= link_to "Edit this courses", edit_course_path(id: @course.id),class: 'btn btn-outline-light btn-warning btn-text-light text-uppercase mb-3' %> |
+      <%= link_to "Edituj kurz", edit_course_path(id: @course.id),class: 'btn btn-outline-light btn-warning btn-text-light text-uppercase mb-3' %> |
     <%end %>
     <%if policy(@course).destroy? %>
-      <%= button_to "Destroy this courses", @course, method: :delete,class: 'btn btn-outline-light btn-danger btn-text-light text-uppercase mb-3' %>
+      <%= button_to "Vymaž tento kurz", @course, method: :delete,class: 'btn btn-outline-light btn-danger btn-text-light text-uppercase mb-3' %>
     <%end %>
   </div>
 </div>

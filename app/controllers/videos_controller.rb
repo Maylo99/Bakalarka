@@ -60,10 +60,11 @@ class VideosController < ApplicationController
   # DELETE /videos/1 or /videos/1.json
   def destroy
     authorize @video
+    @course=Course.find_by(id: @video.course_id)
     @video.destroy
 
     respond_to do |format|
-      format.html { redirect_to videos_url, notice: "Video was successfully destroyed." }
+      format.html { redirect_to course_path(@course), notice: "Video was successfully destroyed." }
       format.json { head :no_content }
     end
   end

@@ -1,13 +1,15 @@
-<h1>Edituj svoj komentár</h1>
+<h1 class="text-center">Edituj svoj komentár</h1>
+<div class="bg-dark text-center w-25  mx-auto">
+  <%= form_with method: :put do |form| %>
+    <div>
+      <%= form.label :Edituj_komentar, style: "display: block", class: 'fs-4 text-light' %>
+      <%= form.text_area :text, class: 'form-control' %>
+      <%= form.submit "Ulož zmeny", class: 'btn btn-outline-light btn-success btn-text-light text-uppercase ' %>
+    </div>
 
-<%= form_with method: :put do |form| %>
-  <%= form.label :Edituj_komentar, style: "display: block" %>
-  <%= form.text_area :text %>
-  <%= form.submit %>
-<% end %>
-
-
+  <% end %>
+</div>
 <div>
-  <%= link_to "Back to comentars", video_path(@video) %>
+  <%= link_to "Naspäť do kurzu", video_path(@video), class: 'btn btn-outline-light btn-info btn-text-light text-uppercase ' %>
 </div>
 
