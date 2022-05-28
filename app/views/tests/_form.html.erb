@@ -40,11 +40,11 @@
                   <%= render 'tests/multiple_choice_question_fields', builder: builder %>
                 <% end %>
                 <% if current_page?(action: "new") %>
-                  <%= link_to_add_fields 'Pridaj multiple', form, :multiple_choice_questions %>
+                  <%= link_to_add_fields 'Pridaj otázku z možnosťami', form, :multiple_choice_questions %>
                 <% end %>
               </div>
             </div>
-            <%= form.submit %>
+            <%= form.submit "Ulož" %>
         <% end %>
         </form>
       </div>
