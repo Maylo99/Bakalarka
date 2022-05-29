@@ -49,7 +49,6 @@ class ApplicationPolicy
     else
       @user.roles.ids[0]== 1
     end
-
   end
   class Scope
     def initialize(user, scope)
