@@ -15,12 +15,17 @@
             <%= link_to "Testy", tests_path, :method => "get", class: "nav-link active text-warning navbar-brand " %>
           </li>
         <% end %>
-        <li class="nav-item">
-          <%= link_to "Kurzy", courses_path, :method => "get", class: "nav-link active text-warning navbar-brand" %>
-        </li>
         <% if !session[:user_id].nil? %>
           <li class="nav-item">
             <%= link_to "Moje testy", take_tests_path, :method => "get", class: "nav-link active text-warning navbar-brand" %>
+          </li>
+        <% end %>
+        <li class="nav-item">
+          <%= link_to "Kurzy", courses_path, :method => "get", class: "nav-link active text-warning navbar-brand" %>
+        </li>
+        <% if !session[:user_id].nil? and policy(:video).new? %>
+          <li class="nav-item">
+            <%= link_to "Pridaj video", new_video_path, method: :get, class: "nav-link active text-warning navbar-brand" %>
           </li>
         <% end %>
         <% if !session[:user_id].nil? %>
@@ -28,14 +33,10 @@
             <%= link_to "Môj profil", update_user_path, method: :get, class: "nav-link active text-warning navbar-brand" %>
           </li>
         <% end %>
+
         <% if !session[:user_id].nil? %>
           <li class="nav-item">
-            <%= link_to "Logout",logout_path,data:{"turbo-method": :delete} , class: "nav-link active text-warning navbar-brand" %>
-          </li>
-        <% end %>
-        <% if !session[:user_id].nil? and policy(:video).new? %>
-          <li class="nav-item">
-            <%= link_to "Pridaj video", new_video_path, method: :get, class: "nav-link active text-warning navbar-brand" %>
+            <%= link_to "Odhlásenie",logout_path,data:{"turbo-method": :delete} , class: "nav-link active text-warning navbar-brand" %>
           </li>
         <% end %>
         <% if session[:user_id].nil? %>

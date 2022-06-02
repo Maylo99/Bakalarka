@@ -11,10 +11,16 @@ class  TestsController < ApplicationController
 
   # GET /tests/1 or /tests/1.json
   def show
+    if session[:user_id].nil?
+      redirect_to root_path, notice: "Pre túto akciu musíš byť prihlásený!"
+    end
   end
 
   # GET /tests/new
   def new
+    if session[:user_id].nil?
+      redirect_to root_path, notice: "Pre túto akciu musíš byť prihlásený!"
+    end
     @test = Test.new
     @test.open_questions.build
     @test.multiple_choice_questions.build.choices.build
@@ -24,10 +30,16 @@ class  TestsController < ApplicationController
 
   # GET /tests/1/edit
   def edit
+    if session[:user_id].nil?
+      redirect_to root_path, notice: "Pre túto akciu musíš byť prihlásený!"
+    end
   end
 
   # POST /tests or /tests.json
   def create
+    if session[:user_id].nil?
+      redirect_to root_path, notice: "Pre túto akciu musíš byť prihlásený!"
+    end
     @test = Test.new(test_params)
 
     respond_to do |format|
@@ -43,6 +55,9 @@ class  TestsController < ApplicationController
 
   # PATCH/PUT /tests/1 or /tests/1.json
   def update
+    if session[:user_id].nil?
+      redirect_to root_path, notice: "Pre túto akciu musíš byť prihlásený!"
+    end
     respond_to do |format|
       if @test.update(test_params)
         format.html { redirect_to test_url(@test), notice: "Test was successfully updated." }
@@ -56,16 +71,9 @@ class  TestsController < ApplicationController
 
   # DELETE /tests/1 or /tests/1.json
   def destroy
-    # @test=Test.find(params[:test_id])
-    # @open_question=OpenQuestion.find(params[:id])
-    # if @open_question.destroy
-    #   flash[:notice]="Uspesne zmazane"
-    #   redirect_to @test
-    # else
-    #   flash[:error]="Nepodarilo sa"
-    #   render :show
-    #   end
-    # end
+    if session[:user_id].nil?
+      redirect_to root_path, notice: "Pre túto akciu musíš byť prihlásený!"
+    end
     @test.destroy
 
     respond_to do |format|

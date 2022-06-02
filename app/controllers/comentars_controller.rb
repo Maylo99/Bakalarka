@@ -22,11 +22,17 @@ class ComentarsController < ApplicationController
     end
   end
   def edit
+    if session[:user_id].nil?
+      redirect_to root_path, notice: "Pre túto akciu musíš byť prihlásený!"
+    end
     @comentar=Comentar.find_by(id: params[:id])
     @video=Video.find_by(id: @comentar.video_id)
   end
 
   def update
+    if session[:user_id].nil?
+      redirect_to root_path, notice: "Pre túto akciu musíš byť prihlásený!"
+    end
       @comentar=Comentar.find_by(id: params[:id])
       @video=Video.find_by(id: @comentar.video_id)
       respond_to do |format|

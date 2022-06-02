@@ -3,6 +3,9 @@ class VideosController < ApplicationController
 
   # GET /videos or /videos.json
   def index
+    if session[:user_id].nil?
+      redirect_to root_path, notice: "Pre túto akciu musíš byť prihlásený!"
+    end
     @videos = Video.all
     if session[:user_id].nil?
       redirect_to root_path, notice: "Pre túto akciu musíš byť prihlásený!"
@@ -11,6 +14,9 @@ class VideosController < ApplicationController
 
   # GET /videos/1 or /videos/1.json
   def show
+    if session[:user_id].nil?
+      redirect_to root_path, notice: "Pre túto akciu musíš byť prihlásený!"
+    end
     v=Video.find_by(id: params[:id])
     c = CourseRegistration.where("course_id=:course and user_id=:user", { user: session[:user_id], course: v.course_id })
     if c.empty?
@@ -20,19 +26,27 @@ class VideosController < ApplicationController
 
   # GET /videos/new
   def new
+    if session[:user_id].nil?
+      redirect_to root_path, notice: "Pre túto akciu musíš byť prihlásený!"
+    end
     @video = Video.new
   end
 
   # GET /videos/1/edit
   def edit
+    if session[:user_id].nil?
+      redirect_to root_path, notice: "Pre túto akciu musíš byť prihlásený!"
+    end
     @video=Video.find_by(id:params[:id])
     authorize @video
   end
 
   # POST /videos or /videos.json
   def create
+    if session[:user_id].nil?
+      redirect_to root_path, notice: "Pre túto akciu musíš byť prihlásený!"
+    end
     @video = Video.new(video_params)
-
     respond_to do |format|
       if @video.save
         format.html { redirect_to video_url(@video), notice: "Video was successfully created." }
@@ -46,6 +60,9 @@ class VideosController < ApplicationController
 
   # PATCH/PUT /videos/1 or /videos/1.json
   def update
+    if session[:user_id].nil?
+      redirect_to root_path, notice: "Pre túto akciu musíš byť prihlásený!"
+    end
     respond_to do |format|
       if @video.update(video_params)
         format.html { redirect_to video_url(@video), notice: "Video was successfully updated." }
@@ -59,6 +76,9 @@ class VideosController < ApplicationController
 
   # DELETE /videos/1 or /videos/1.json
   def destroy
+    if session[:user_id].nil?
+      redirect_to root_path, notice: "Pre túto akciu musíš byť prihlásený!"
+    end
     authorize @video
     @course=Course.find_by(id: @video.course_id)
     @video.destroy
