@@ -28,7 +28,7 @@
         <%= button_to "Predchádzajúce video", video_path(course.videos.where("id < ?", params[:id]).last), method: :get, class: 'btn btn-dark text-warning' %>
       <% end %>
       <div class="col-4 start-0">
-        <%= button_to "Späť na kurz", course_path(:id => course.id), class: 'btn btn-dark text-warning ' %>
+        <%= button_to "Späť na kurz", courses_path,:method => "get", class: 'btn btn-dark text-warning ' %>
       </div>
     </div>
       <div class="col-4 start-0">

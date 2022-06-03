@@ -15,7 +15,7 @@ class UserController< ApplicationController
     if @user.update(edit_params)
       redirect_to root_path, notice: "Udaje boli uspesne zmenene"
     else
-      render :edit
+      redirect_to update_user_path, notice: "Nesprávne vyplnené údaje"
     end
   end
 
